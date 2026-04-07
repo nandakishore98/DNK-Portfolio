@@ -7,7 +7,7 @@ export const profile = {
   subtitle:
     "MBA, BITSoM | PMP | 4 years owning product decisions in regulated AI, enterprise platforms & 0→1 builds",
   positioningStatement:
-    "I make high-stakes product decisions in regulated, high-scale environments. I've shipped conversational AI to 4.5 Cr users in insurance, turned a 6,000-item vulnerability backlog into a weekly release machine, and killed 8 out of 10 product verticals to bet on the right two. I think in tradeoffs — cost vs. experience, automation vs. control, growth vs. risk — and I own the outcome either way.",
+    "I make high-stakes product decisions in regulated, high-scale environments. I've shipped conversational AI to 4.5 Cr users in insurance, turned a 6,000-item vulnerability backlog into a weekly release machine, and evaluated 10 product verticals to pick the two highest-growth bets. I think in tradeoffs — cost vs. experience, automation vs. control, growth vs. risk — and I own the outcome either way.",
   email: "nandakishored98@gmail.com",
   phone: "(+91) 9740603400",
   linkedin: "https://linkedin.com/in/dnk1998",
@@ -35,7 +35,7 @@ export const experiences: Experience[] = [
     role: "Product Intern",
     period: "2023",
     location: "Kolkata",
-    description: "AI/ML startup. Interviewed 40+ domain experts, killed 8 out of 10 product verticals, and designed a 0→1 LLM hiring platform that shipped from my specs.",
+    description: "AI/ML startup with BFSI-heavy founders exploring non-finance domains. Interviewed 40+ experts, evaluated 10 verticals to identify the highest-growth opportunities, and designed a 0→1 LLM hiring platform that shipped from my specs.",
     bullets: [],
   },
   {
@@ -119,7 +119,7 @@ export const certifications = [
 export const achievements: Achievement[] = [
   { metric: "4.5 Cr+", label: "Policyholders Reached", description: "Conversational AI pilot shipped to entire policyholder base" },
   { metric: "50K", label: "Daily Active Users", description: "Grew distributor dashboard engagement 10× in 6 months" },
-  { metric: "30%", label: "Cost Savings", description: "Projected savings from Gen AI-first renewal outreach" },
+  { metric: "30–40%", label: "Cost Savings", description: "Projected savings from Gen AI-first renewal outreach" },
   { metric: "4 Weeks", label: "vs. Usual 10", description: "Record-breaking pilot delivery at SBI Life" },
 ];
 
@@ -146,11 +146,11 @@ export const sbiProcessFlows = {
     title: "Conversational AI — Policy Awareness, Servicing & Renewals",
     subtitle: "The problem wasn't the AI. It was the trust architecture around it.",
     caseStudy: {
-      problem: "Call-center renewal outreach was cost-inefficient for low-ticket policies, and rural policyholders across 10+ languages were essentially unreachable. The org had never shipped a customer-facing AI product.",
-      insight: "Everyone wanted to start with the model. I realized the bottleneck was compliance sign-off, data quality, and defining what happens when the AI gets it wrong. The failure modes mattered more than the happy path.",
-      decision: "Designed failure-first: built guardrails, human fallback logic, and IRDAI-compliant audit trails before writing a single conversation flow. Chose a hybrid LLM approach over a pure vendor lock-in.",
-      tradeoffs: "Sacrificed speed-to-first-demo to build a compliance-ready foundation. Delayed WhatsApp launch by 2 weeks to get audit trails right — which is what unlocked the sign-off for 4.5 Cr rollout.",
-      outcome: "Shipped to 4.5 Cr+ policyholders in 4 weeks (org record was 10). 25% AI accuracy improvement. 4% retention lift. 30% projected cost savings on renewal outreach.",
+      problem: "Renewal outreach was structurally broken — high-cost call centers were being used for low-ticket policies, while rural customers across 10+ languages were effectively unreachable. The org had never shipped a customer-facing AI product, and customer communication ownership was fragmented.",
+      insight: "The bottleneck wasn't model capability — it was compliance, trust, and failure handling. In a regulated setup, success depends less on the AI being right, and more on how safely it fails. So instead of optimizing for conversations, I focused on failure modes, guardrails, and auditability as the real enablers of scale.",
+      decision: "Adopted a failure-first architecture: guardrails, human fallback, and audit trails designed before scaling flows. Chose a hybrid model (LLM + structured knowledge + human-in-loop) over full automation. Governance, monitoring, and compliance baked in from day one.",
+      tradeoffs: "Phase 1 (Pilot): optimized for speed — shipped in 4 weeks (org record). Phase 2 (Scale): deliberately slowed specific surfaces like WhatsApp by ~2 weeks to ensure auditability and compliance sign-offs. Balanced rapid rollout with long-term regulatory viability.",
+      outcome: "Scaled across 5 products + 1 campaign, covering ~4.5 Cr unique policyholders. 25% improvement in AI accuracy via iterative guardrails + knowledge refinement. 4% uplift in renewal retention. 30–40% projected cost savings by reducing call-center dependency.",
     } as CaseStudy,
     steps: [
       { label: "Problem Discovery", detail: "CRM data analysis, complaint mining, cost-per-call audit across languages" },
@@ -173,7 +173,7 @@ export const sbiProcessFlows = {
       { value: "4 Weeks", label: "vs. usual 10 to ship" },
       { value: "~25%", label: "AI accuracy improvement" },
       { value: "4%", label: "Policy retention lift" },
-      { value: "30%", label: "Projected cost savings" },
+      { value: "30–40%", label: "Projected cost savings" },
     ],
   },
   distributorDashboard: {
@@ -256,21 +256,21 @@ export const sbiProcessFlows = {
 export const cloudcraftzFlow = {
   discovery: {
     title: "Enterprise LLM Product Discovery",
-    subtitle: "The hardest product decision isn't what to build — it's what to kill.",
+    subtitle: "BFSI-heavy founders exploring non-finance domains. My job: find where the real growth is.",
     caseStudy: {
-      problem: "Early-stage AI startup with no market focus. Founders wanted to go after everything — legal, healthcare, HR, sales, logistics. 10 industries, zero prioritization.",
-      insight: "Most verticals had interesting problems but terrible unit economics for an early-stage LLM product. The market that looks biggest on paper is rarely the one where an early team can win.",
-      decision: "Built a Lean Canvas scoring framework across viability, feasibility, and desirability. Interviewed 40+ domain experts. Made kill/go calls on all 10 verticals. Prioritized talent acquisition and B2B sales intelligence — highest signal, most defensible data moats.",
-      tradeoffs: "Killing 8 verticals meant walking away from some genuinely interesting problems (legal AI, healthcare documentation). Prioritized 'can we win here as a 10-person team' over 'is this a big market.'",
-      outcome: "2 verticals prioritized with clear specs. Engineering focused instead of scattered. Talent acquisition vertical became the lead product.",
+      problem: "AI/ML startup with deep BFSI expertise but founders wanted to explore non-finance domains — legal, healthcare, HR, sales, logistics. 10 industries on the table, no framework for picking the right bets.",
+      insight: "Most verticals had interesting problems but terrible unit economics for an early-stage LLM product. The biggest TAM on paper is rarely where a 10-person team can win. I needed to identify where founder expertise + LLM capability created a defensible edge.",
+      decision: "Built a Lean Canvas scoring framework across viability, feasibility, and desirability. Interviewed 40+ domain experts. Evaluated all 10 verticals and prioritized talent acquisition and B2B sales intelligence — highest signal, most defensible data moats. Also helped build internal tools to strengthen the core before going external.",
+      tradeoffs: "Passing on 8 verticals meant walking away from genuinely interesting problems (legal AI, healthcare documentation). But spreading thin would have been worse. Also chose to invest in internal tooling over immediate monetization — building the foundation first.",
+      outcome: "2 high-growth verticals identified with clear specs. Engineering focused instead of scattered. Talent acquisition became the lead product. Internal tools strengthened operational efficiency.",
     } as CaseStudy,
     steps: [
       { label: "Expert Interviews", detail: "40+ domain experts across 10 industries" },
       { label: "Lean Canvas Eval", detail: "Evaluated each vertical on viability, feasibility, desirability" },
-      { label: "Kill/Go Decisions", detail: "Kill/go calls on 10 verticals — prioritized talent acquisition & B2B sales intelligence" },
+      { label: "Prioritization", detail: "Evaluated 10 verticals — prioritized talent acquisition & B2B sales intelligence as highest-growth bets" },
     ],
     capabilities: [
-      { category: "Product Discovery", items: ["Stakeholder Interviews", "Lean Canvas", "Market Sizing", "Prioritization Frameworks", "Kill/Go Analysis"], color: "cyan" as const },
+      { category: "Product Discovery", items: ["Stakeholder Interviews", "Lean Canvas", "Market Sizing", "Prioritization Frameworks", "Go/No-Go Analysis"], color: "cyan" as const },
       { category: "Research & Documentation", items: ["Miro", "Notion", "Competitive Analysis", "Industry Mapping"], color: "purple" as const },
     ],
     metrics: [

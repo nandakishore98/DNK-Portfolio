@@ -64,7 +64,7 @@ export default function HeroSection({ onChatOpen }: HeroSectionProps) {
             transition={{ delay: 0.5 }}
             className="text-sm text-slate-400 mb-6 max-w-lg mx-auto lg:mx-0 leading-relaxed"
           >
-            Shipped conversational AI to <span className="text-blue-400 font-semibold">4.5 Cr policyholders</span> in 4 weeks at SBI Life. Killed 8 out of 10 product verticals at an AI startup to bet on the right two. Turned a 6,000-item vulnerability backlog into a weekly release machine at Accenture. I think in tradeoffs and own the outcome.
+            Shipped conversational AI to <span className="text-blue-400 font-semibold">4.5 Cr policyholders</span> in 4 weeks at SBI Life. Evaluated 10 product verticals at an AI startup and picked the two highest-growth bets. Turned a 6,000-item vulnerability backlog into a weekly release machine at Accenture. I think in tradeoffs and own the outcome.
           </motion.p>
 
           <motion.p

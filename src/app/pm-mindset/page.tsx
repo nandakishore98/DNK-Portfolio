@@ -41,16 +41,16 @@ const articles = [
     },
   },
   {
-    id: "when-to-kill",
+    id: "picking-bets",
     icon: Target,
     accent: "red",
-    title: "When to Kill a Product Idea",
-    summary: "At Cloudcraftz, I evaluated 10 LLM verticals and killed 8 of them. Here's the framework that made those calls defensible.",
+    title: "How I Pick the Right Bets",
+    summary: "At Cloudcraftz, I evaluated 10 LLM verticals across non-finance domains to find the highest-growth opportunities. Here's the framework that made those calls defensible.",
     content: {
       items: [
         {
           question: "Can a 10-person team win here?",
-          detail: "Big market ≠ right market. Healthcare AI is a massive opportunity, but an early-stage startup competing against Epic, Cerner, and established EMR integrations is a losing bet. I killed healthcare despite the TAM because the go-to-market required enterprise sales cycles we couldn't afford.",
+          detail: "Big market ≠ right market. Healthcare AI is a massive opportunity, but an early-stage startup competing against Epic, Cerner, and established EMR integrations is a losing bet. I passed on healthcare despite the TAM because the go-to-market required enterprise sales cycles we couldn't afford.",
         },
         {
           question: "Is the data moat real or imagined?",
@@ -73,7 +73,7 @@ const articles = [
           detail: "Every AI product has a mode where it's actively harmful. In legal AI, a wrong clause can create liability. In healthcare, a wrong recommendation can harm a patient. I assessed: if the AI fails, does the user just shrug, or does something bad happen?",
         },
       ],
-      callout: "Killing ideas is the highest-leverage product activity. The 8 verticals I killed freed the team to go deep on the 2 that mattered. Saying no is a product skill.",
+      callout: "Picking the right bets is the highest-leverage product activity. Passing on 8 verticals freed the team to go deep on the 2 that mattered. Saying 'not now' is a product skill — it's what turns a scattered team into a focused one.",
     },
   },
   {
