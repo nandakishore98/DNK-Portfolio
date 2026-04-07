@@ -7,11 +7,17 @@ import {
   ExternalLink,
   BadgeCheck,
   ArrowUpRight,
+  MessageCircle,
+  Code2,
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { profile, skillCategories, certifications, achievements } from "@/data/resume";
 
-export default function HomeSection() {
+interface HomeSectionProps {
+  onChatOpen?: () => void;
+}
+
+export default function HomeSection({ onChatOpen }: HomeSectionProps) {
   return (
     <section id="home" className="relative py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
@@ -97,7 +103,7 @@ export default function HomeSection() {
             <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6">
               Let&apos;s Connect
             </h3>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-6">
               <a
                 href={`mailto:${profile.email}`}
                 className="flex items-center gap-3 text-slate-400 hover:text-blue-400 transition-colors group"
@@ -124,6 +130,23 @@ export default function HomeSection() {
                 <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             </div>
+            {onChatOpen && (
+              <button
+                onClick={onChatOpen}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Chat with My AI
+              </button>
+            )}
+          </div>
+        </ScrollReveal>
+
+        {/* Vibe coded note */}
+        <ScrollReveal delay={0.3}>
+          <div className="mt-8 flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-600">
+            <Code2 className="w-3.5 h-3.5" />
+            <span>Vibe coded with Claude Code &amp; Next.js</span>
           </div>
         </ScrollReveal>
       </div>

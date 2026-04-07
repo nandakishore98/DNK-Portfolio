@@ -1,18 +1,39 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import Link from "next/link";
 
 const navLinks = [
-  { label: "SBI Life", href: "#sbi-life" },
-  { label: "MBA", href: "#mba" },
-  { label: "Cloudcraftz", href: "#cloudcraftz" },
-  { label: "Accenture", href: "#accenture" },
-  { label: "Contact", href: "#home" },
+  {
+    label: "Journey",
+    href: "/",
+    tooltip: null,
+  },
+  {
+    label: "My AI",
+    href: "#",
+    tooltip: "Chat with my AI assistant",
+    isChat: true,
+  },
+  {
+    label: "PM Mindset",
+    href: "/pm-mindset",
+    tooltip: "Want to know how I think?",
+  },
+  {
+    label: "My Ideas",
+    href: "/ideas",
+    tooltip: "Want to know what excites me?",
+  },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  onChatOpen?: () => void;
+}
+
+export default function Navbar({ onChatOpen }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -32,25 +53,43 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a
-            href="#hero"
+          <Link
+            href="/"
             className="text-lg font-bold gradient-text tracking-tight"
           >
             DNK
-          </a>
+          </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-colors duration-200"
-              >
-                {link.label}
-              </a>
+              <div key={link.label} className="relative group">
+                {link.isChat ? (
+                  <button
+                    onClick={onChatOpen}
+                    className="px-4 py-2 text-sm text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-colors duration-200 rounded-lg hover:bg-blue-500/5"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="px-4 py-2 text-sm text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-colors duration-200 rounded-lg hover:bg-blue-500/5"
+                  >
+                    {link.label}
+                  </Link>
+                )}
+                {link.tooltip && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-slate-800 border border-slate-700 text-xs text-slate-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+                    {link.tooltip}
+                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-slate-900 dark:bg-slate-800 border-l border-t border-slate-700" />
+                  </div>
+                )}
+              </div>
             ))}
-            <ThemeToggle />
+            <div className="ml-2">
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile */}
@@ -69,16 +108,39 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden glass border-t border-slate-800/50">
-          <div className="px-4 py-4 space-y-3">
+          <div className="px-4 py-4 space-y-1">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block text-sm text-slate-400 hover:text-blue-400 transition-colors"
-              >
-                {link.label}
-              </a>
+              <div key={link.label}>
+                {link.isChat ? (
+                  <button
+                    onClick={() => {
+                      setMobileOpen(false);
+                      onChatOpen?.();
+                    }}
+                    className="block w-full text-left px-3 py-2 text-sm text-slate-400 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-500/5"
+                  >
+                    {link.label}
+                    {link.tooltip && (
+                      <span className="block text-xs text-slate-600 mt-0.5">
+                        {link.tooltip}
+                      </span>
+                    )}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-3 py-2 text-sm text-slate-400 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-500/5"
+                  >
+                    {link.label}
+                    {link.tooltip && (
+                      <span className="block text-xs text-slate-600 mt-0.5">
+                        {link.tooltip}
+                      </span>
+                    )}
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
         </div>

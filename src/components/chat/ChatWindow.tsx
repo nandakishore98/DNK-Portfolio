@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, RotateCcw, Sparkles } from "lucide-react";
+import { Send, RotateCcw, Sparkles, AlertCircle } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 import { useChat } from "@/hooks/useChat";
 
@@ -74,11 +74,14 @@ export default function ChatWindow() {
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 border border-blue-500/30 flex items-center justify-center mb-4">
               <Sparkles className="w-6 h-6 text-blue-400" />
             </div>
-            <p className="text-sm text-slate-300 mb-1 font-medium">
+            <p className="text-sm text-slate-700 dark:text-slate-300 mb-1 font-medium">
               Hi! I&apos;m Nanda&apos;s AI assistant.
             </p>
-            <p className="text-xs text-slate-500 mb-6 max-w-[240px]">
+            <p className="text-xs text-slate-500 mb-4 max-w-[260px]">
               Paste a job description to see if Nanda&apos;s a fit, or ask anything about his experience.
+            </p>
+            <p className="text-[10px] text-slate-400 dark:text-slate-600 mb-4 max-w-[240px] italic">
+              Fair warning: I&apos;m his hype bot — I only say nice things. For the real stuff, talk to the human.
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
               {quickActions.map((action) => (
@@ -92,7 +95,7 @@ export default function ChatWindow() {
                       sendMessage(action);
                     }
                   }}
-                  className="px-3 py-1.5 rounded-full text-xs border border-slate-700 text-slate-400 hover:border-blue-500/40 hover:text-blue-400 transition-all duration-200"
+                  className="px-3 py-1.5 rounded-full text-xs border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-blue-500/40 hover:text-blue-400 transition-all duration-200"
                 >
                   {action}
                 </button>
@@ -109,7 +112,7 @@ export default function ChatWindow() {
                 <div className="w-7 h-7 rounded-full bg-slate-700 border border-slate-600 flex items-center justify-center">
                   <Sparkles className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
                 </div>
-                <div className="bg-slate-800 border border-slate-700 rounded-2xl rounded-bl-md px-4 py-3">
+                <div className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl rounded-bl-md px-4 py-3">
                   <div className="flex gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: "0ms" }} />
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -121,7 +124,21 @@ export default function ChatWindow() {
           </>
         )}
         {error && (
-          <p className="text-xs text-red-400 text-center">{error}</p>
+          <div className="flex gap-3">
+            <div className="w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+              <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
+            </div>
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl rounded-bl-md px-4 py-3 max-w-[80%]">
+              <p className="text-sm text-amber-300 font-medium mb-1">Work in Progress</p>
+              <p className="text-xs text-amber-200/70">
+                This AI chat feature is currently in trial — I&apos;m either out of API tokens or still figuring things out. Reach me directly at{" "}
+                <a href="mailto:nandakishored98@gmail.com" className="underline hover:text-amber-200">
+                  nandakishored98@gmail.com
+                </a>{" "}
+                instead!
+              </p>
+            </div>
+          </div>
         )}
         <div ref={messagesEndRef} />
       </div>

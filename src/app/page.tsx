@@ -14,9 +14,11 @@ import ChatWidget from "@/components/chat/ChatWidget";
 export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
 
+  const openChat = () => setChatOpen(true);
+
   return (
     <div className="relative bg-white dark:bg-slate-950 min-h-screen transition-colors duration-300">
-      <Navbar />
+      <Navbar onChatOpen={openChat} />
 
       {/* Journey line */}
       <div className="hidden lg:block fixed left-8 top-0 bottom-0 w-px z-10">
@@ -24,9 +26,8 @@ export default function Home() {
       </div>
 
       <main>
-        <HeroSection onChatOpen={() => setChatOpen(true)} />
+        <HeroSection onChatOpen={openChat} />
 
-        {/* Journey separator */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="h-px bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
         </div>
@@ -61,12 +62,12 @@ export default function Home() {
           <div className="h-px bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
         </div>
 
-        <HomeSection />
+        <HomeSection onChatOpen={openChat} />
       </main>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-xs text-slate-600 border-t border-slate-800/50">
-        &copy; {new Date().getFullYear()} Nanda Kishore D. Built with Next.js &amp; Claude.
+      <footer className="py-8 text-center text-xs text-slate-500 dark:text-slate-600 border-t border-slate-200 dark:border-slate-800/50">
+        &copy; {new Date().getFullYear()} Nanda Kishore D. Vibe coded with Next.js &amp; Claude.
       </footer>
 
       <ChatWidget isOpen={chatOpen} onToggle={() => setChatOpen(!chatOpen)} />

@@ -14,8 +14,6 @@ export function useChat() {
     setIsLoading(true);
     setError(null);
 
-    const assistantMessage: ChatMessage = { role: "assistant", content: "" };
-
     try {
       const allMessages = [...messages, userMessage];
       const response = await fetch("/api/chat", {
@@ -36,6 +34,7 @@ export function useChat() {
       let accumulated = "";
 
       // Add empty assistant message
+      const assistantMessage: ChatMessage = { role: "assistant", content: "" };
       setMessages((prev) => [...prev, assistantMessage]);
 
       while (true) {
@@ -52,10 +51,13 @@ export function useChat() {
           return updated;
         });
       }
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Something went wrong";
-      setError(errorMessage);
+
+      // If we got an empty response, treat it as an error
+      if (!accumulated.trim()) {
+        throw new Error("Empty response");
+      }
+    } catch {
+      setError("chat_unavailable");
       // Remove the empty assistant message if there was an error
       setMessages((prev) => {
         if (

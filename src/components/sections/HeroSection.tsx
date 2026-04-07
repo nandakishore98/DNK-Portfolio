@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Download, MessageCircle } from "lucide-react";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { profile } from "@/data/resume";
 
@@ -85,13 +85,13 @@ export default function HeroSection({ onChatOpen }: HeroSectionProps) {
               <MessageCircle className="w-4 h-4" />
               Am I the Right Fit?
             </button>
-            <a
-              href={`mailto:${profile.email}`}
+            <button
+              onClick={onChatOpen}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
             >
-              <Download className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4" />
               Get in Touch
-            </a>
+            </button>
           </motion.div>
         </motion.div>
 
@@ -131,7 +131,7 @@ export default function HeroSection({ onChatOpen }: HeroSectionProps) {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500"
       >
-        <span className="text-xs tracking-widest uppercase">Scroll to explore</span>
+        <span className="text-xs tracking-widest uppercase">Scroll to explore my journey</span>
         <ChevronDown className="w-5 h-5 bounce-slow" />
       </motion.div>
     </section>
