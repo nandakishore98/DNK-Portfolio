@@ -1,9 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, ArrowRight, Wrench, Target, BarChart3 } from "lucide-react";
+import { MapPin, ArrowRight, BarChart3 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { experiences, accentureFlow } from "@/data/resume";
+import type { Capability } from "@/data/resume";
+
+const capabilityColors: Record<string, { bg: string; border: string; text: string }> = {
+  blue: { bg: "bg-blue-500/10", border: "border-blue-500/30", text: "text-blue-300" },
+  emerald: { bg: "bg-emerald-500/10", border: "border-emerald-500/30", text: "text-emerald-300" },
+  amber: { bg: "bg-amber-500/10", border: "border-amber-500/30", text: "text-amber-300" },
+};
+
+function CapabilityChip({ cap }: { cap: Capability }) {
+  const c = capabilityColors[cap.color];
+  return (
+    <div>
+      <span className={`text-[10px] font-semibold uppercase tracking-wider ${c.text} mb-2 block`}>
+        {cap.category}
+      </span>
+      <div className="flex flex-wrap gap-1.5">
+        {cap.items.map((item) => (
+          <span key={item} className={`px-2.5 py-1 rounded-full text-xs ${c.bg} ${c.text} border ${c.border}`}>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const flow = accentureFlow.vulnerabilityTriage;
 
@@ -14,7 +39,6 @@ export default function AccentureSection() {
   return (
     <section id="accenture" className="relative py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        {/* Company header */}
         <ScrollReveal>
           <div className="flex items-center gap-3 mb-2">
             <div className="w-3 h-3 rounded-full bg-gradient-to-r from-green-400 to-blue-500 pulse-glow" />
@@ -36,7 +60,6 @@ export default function AccentureSection() {
           <p className="text-slate-500 max-w-3xl mb-12">{exp.description}</p>
         </ScrollReveal>
 
-        {/* Flow title + subtitle */}
         <ScrollReveal delay={0.15}>
           <h3 className="text-xl font-semibold text-slate-100 mb-1">
             {flow.title}
@@ -60,7 +83,6 @@ export default function AccentureSection() {
                     {step.label}
                   </span>
 
-                  {/* Tooltip */}
                   {hoveredStep === i && (
                     <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-64 rounded-lg bg-slate-800 border border-slate-700 px-4 py-3 text-xs text-slate-300 shadow-xl z-50">
                       <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-700" />
@@ -77,54 +99,20 @@ export default function AccentureSection() {
           </div>
         </ScrollReveal>
 
-        {/* 3-column grid: Skills | Tools | Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Key Skills */}
-          <ScrollReveal delay={0.25}>
-            <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Target className="w-4 h-4 text-green-400" />
-                <h4 className="text-sm font-semibold text-slate-200 uppercase tracking-wider">
-                  Key Skills
-                </h4>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {flow.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700"
-                  >
-                    {skill}
-                  </span>
+        {/* Capabilities + Metrics */}
+        <ScrollReveal delay={0.25}>
+          <div className="grid sm:grid-cols-3 gap-6">
+            <div className="sm:col-span-2 rounded-xl border border-slate-800/80 bg-slate-900/50 p-6">
+              <h4 className="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-4">
+                How It Was Built
+              </h4>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {flow.capabilities.map((cap, i) => (
+                  <CapabilityChip key={i} cap={cap} />
                 ))}
               </div>
             </div>
-          </ScrollReveal>
 
-          {/* Tools Used */}
-          <ScrollReveal delay={0.3}>
-            <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Wrench className="w-4 h-4 text-green-400" />
-                <h4 className="text-sm font-semibold text-slate-200 uppercase tracking-wider">
-                  Tools Used
-                </h4>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {flow.tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Key Metrics */}
-          <ScrollReveal delay={0.35}>
             <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6">
               <div className="flex items-center gap-2 mb-4">
                 <BarChart3 className="w-4 h-4 text-green-400" />
@@ -145,8 +133,8 @@ export default function AccentureSection() {
                 ))}
               </div>
             </div>
-          </ScrollReveal>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

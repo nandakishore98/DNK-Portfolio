@@ -1,14 +1,50 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, ArrowRight, Wrench, Target, BarChart3 } from "lucide-react";
+import { MapPin, ArrowRight, BarChart3 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { experiences, cloudcraftzFlow } from "@/data/resume";
+import type { Capability } from "@/data/resume";
 
-function ProcessFlow({ flow }: { flow: typeof cloudcraftzFlow.discovery }) {
+const capabilityColors: Record<string, { bg: string; border: string; text: string }> = {
+  blue: { bg: "bg-blue-500/10", border: "border-blue-500/30", text: "text-blue-300" },
+  purple: { bg: "bg-purple-500/10", border: "border-purple-500/30", text: "text-purple-300" },
+  cyan: { bg: "bg-cyan-500/10", border: "border-cyan-500/30", text: "text-cyan-300" },
+  emerald: { bg: "bg-emerald-500/10", border: "border-emerald-500/30", text: "text-emerald-300" },
+  amber: { bg: "bg-amber-500/10", border: "border-amber-500/30", text: "text-amber-300" },
+  red: { bg: "bg-red-500/10", border: "border-red-500/30", text: "text-red-300" },
+  slate: { bg: "bg-slate-800/50", border: "border-slate-700/60", text: "text-slate-300" },
+};
+
+function CapabilityChip({ cap }: { cap: Capability }) {
+  const c = capabilityColors[cap.color];
+  return (
+    <div>
+      <span className={`text-[10px] font-semibold uppercase tracking-wider ${c.text} mb-2 block`}>
+        {cap.category}
+      </span>
+      <div className="flex flex-wrap gap-1.5">
+        {cap.items.map((item) => (
+          <span key={item} className={`px-2.5 py-1 rounded-full text-xs ${c.bg} ${c.text} border ${c.border}`}>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+type FlowData = {
+  title: string;
+  subtitle: string;
+  steps: { label: string; detail: string }[];
+  capabilities: Capability[];
+  metrics: { value: string; label: string }[];
+};
+
+function ProcessFlow({ flow }: { flow: FlowData }) {
   return (
     <div className="space-y-8">
-      {/* Subtitle / tagline */}
       <p className="text-sm italic text-slate-500 max-w-2xl">
         {flow.subtitle}
       </p>
@@ -22,7 +58,6 @@ function ProcessFlow({ flow }: { flow: typeof cloudcraftzFlow.discovery }) {
                 <div className="px-4 py-2.5 rounded-lg bg-slate-800/80 border border-slate-700/60 text-sm font-medium text-slate-200 hover:border-cyan-500/40 hover:bg-slate-800 transition-all duration-200 cursor-default">
                   {step.label}
                 </div>
-                {/* Tooltip with detail */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 rounded-lg bg-slate-800 border border-slate-600 text-xs text-slate-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl z-10 max-w-[200px] whitespace-normal text-center">
                   {step.detail}
                   <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-slate-800 border-r border-b border-slate-600" />
@@ -36,39 +71,17 @@ function ProcessFlow({ flow }: { flow: typeof cloudcraftzFlow.discovery }) {
         </div>
       </div>
 
-      {/* Skills + Tools + Metrics grid */}
+      {/* Capabilities + Metrics */}
       <div className="grid sm:grid-cols-3 gap-4">
-        {/* Skills */}
-        <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <Target className="w-4 h-4 text-cyan-400" />
-            <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">Key Skills</h4>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {flow.skills.map((skill) => (
-              <span key={skill} className="px-2.5 py-1 rounded-full text-xs border border-slate-700/60 text-slate-400 bg-slate-800/50">
-                {skill}
-              </span>
+        <div className="sm:col-span-2 rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
+          <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">How It Was Built</h4>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {flow.capabilities.map((cap, i) => (
+              <CapabilityChip key={i} cap={cap} />
             ))}
           </div>
         </div>
 
-        {/* Tools */}
-        <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <Wrench className="w-4 h-4 text-purple-400" />
-            <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">Tools Used</h4>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {flow.tools.map((tool) => (
-              <span key={tool} className="px-2.5 py-1 rounded-full text-xs border border-purple-500/30 text-purple-300 bg-purple-500/10">
-                {tool}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Metrics */}
         <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
           <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="w-4 h-4 text-cyan-400" />
@@ -92,9 +105,9 @@ export default function CloudcraftzSection() {
   const exp = experiences.find((e) => e.id === "cloudcraftz")!;
   const [activeProject, setActiveProject] = useState<"discovery" | "aiHiringPlatform">("discovery");
 
-  const projects = [
-    { key: "discovery" as const, label: "Product Discovery", flow: cloudcraftzFlow.discovery },
-    { key: "aiHiringPlatform" as const, label: "AI Hiring Platform (0\u21921)", flow: cloudcraftzFlow.aiHiringPlatform },
+  const projects: { key: "discovery" | "aiHiringPlatform"; label: string; flow: FlowData }[] = [
+    { key: "discovery", label: "Product Discovery", flow: cloudcraftzFlow.discovery },
+    { key: "aiHiringPlatform", label: "AI Hiring Platform (0→1)", flow: cloudcraftzFlow.aiHiringPlatform },
   ];
 
   return (
@@ -119,7 +132,6 @@ export default function CloudcraftzSection() {
           <p className="text-slate-500 max-w-3xl mb-10">{exp.description}</p>
         </ScrollReveal>
 
-        {/* Project tabs */}
         <ScrollReveal delay={0.2}>
           <div className="flex gap-2 mb-8">
             {projects.map((p) => (

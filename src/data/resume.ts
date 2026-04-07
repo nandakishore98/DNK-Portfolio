@@ -72,13 +72,6 @@ export const education: Education[] = [
 
 export const skillCategories: SkillCategory[] = [
   {
-    category: "Tools",
-    skills: [
-      "SQL", "Python", "Power BI", "Tableau", "Excel", "Miro", "Figma",
-      "v0 (Vercel)", "Lovable.dev", "Cursor", "Replit",
-    ],
-  },
-  {
     category: "Product & Strategy",
     skills: [
       "Product Discovery", "Roadmapping", "PRDs", "Backlog Prioritization",
@@ -87,11 +80,30 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
+    category: "Data & Analytics",
+    skills: [
+      "SQL", "Python", "Power BI", "Tableau",
+      "Funnel Analytics", "Usage Tracking", "Data Governance",
+    ],
+  },
+  {
+    category: "AI & Platforms",
+    skills: [
+      "Conversational AI", "LLM Applications", "Prompt Engineering",
+      "Vendor Evaluation", "API Integrations",
+    ],
+  },
+  {
+    category: "Rapid Prototyping",
+    skills: [
+      "v0 (Vercel)", "Lovable.dev", "Cursor", "Replit", "Figma",
+    ],
+  },
+  {
     category: "Domain",
     skills: [
       "Insurance (Underwriting, Claims, Renewals)",
-      "Conversational AI",
-      "LLM Applications",
+      "BFSI Compliance & Governance",
     ],
   },
 ];
@@ -109,6 +121,14 @@ export const achievements: Achievement[] = [
   { metric: "4 Weeks", label: "vs. Usual 10", description: "Record-breaking pilot delivery at SBI Life" },
 ];
 
+// ─── Capability type used across flows ───
+
+export type Capability = {
+  category: string;
+  items: string[];
+  color: "blue" | "purple" | "emerald" | "amber" | "cyan" | "red" | "slate";
+};
+
 // ─── SBI Life Flowcharts ───
 
 export const sbiProcessFlows = {
@@ -125,8 +145,12 @@ export const sbiProcessFlows = {
       { label: "Rollout", detail: "Phased: WhatsApp → voice bot, 4.5 Cr+ policyholders" },
       { label: "Post-Launch", detail: "Sentiment monitoring, accuracy iteration, retention tracking" },
     ],
-    skills: ["Product Discovery", "Vendor Management", "Conversational Design", "Compliance", "Agile/Scrum", "Stakeholder Management", "Analytics"],
-    tools: ["Miro", "Figma", "Power BI", "Excel", "SQL"],
+    capabilities: [
+      { category: "Product & Strategy", items: ["Product Discovery", "Vendor Management", "Conversational Design", "Stakeholder Alignment", "Agile Delivery"], color: "blue" as const },
+      { category: "AI & Platforms", items: ["GenAI Vendor Evaluation", "Prompt Structuring", "Intent Architecture", "Hybrid LLM Design", "API Integrations"], color: "purple" as const },
+      { category: "Governance & Compliance", items: ["IRDAI Compliance", "Data Privacy Frameworks", "Audit Trails", "Guardrails Design", "Human Fallback Logic"], color: "amber" as const },
+      { category: "Data & Analytics", items: ["Sentiment Analysis", "Funnel Tracking", "Usage Analytics", "CRM Analysis", "Power BI"], color: "emerald" as const },
+    ],
     metrics: [
       { value: "4.5 Cr+", label: "Policyholders reached" },
       { value: "4 Weeks", label: "vs. usual 10 to ship" },
@@ -145,8 +169,11 @@ export const sbiProcessFlows = {
       { label: "Adoption Strategy", detail: "Home screen repositioning, gamification hooks, contest tracking" },
       { label: "Feedback Loops", detail: "Behavioral data → feature iteration → re-engagement" },
     ],
-    skills: ["UX Research", "Data Governance", "Product-Led Growth", "Mobile Design", "Gamification"],
-    tools: ["Figma", "Power BI", "SQL", "Excel"],
+    capabilities: [
+      { category: "Product & Strategy", items: ["UX Research", "Product-Led Growth", "Mobile Design", "Gamification", "Stakeholder Alignment"], color: "blue" as const },
+      { category: "Data & Governance", items: ["Data Governance Frameworks", "MIS Systems Integration", "Data Modeling / Schema Alignment", "Single Source of Truth Design"], color: "purple" as const },
+      { category: "Analytics & Tracking", items: ["SQL", "Power BI", "Funnel Analytics", "Usage Tracking", "Behavioral Data Analysis"], color: "emerald" as const },
+    ],
     metrics: [
       { value: "400K+", label: "Distributors served" },
       { value: "10×", label: "DAU growth (5K → 50K)" },
@@ -164,8 +191,10 @@ export const sbiProcessFlows = {
       { label: "Prototyping", detail: "Interactive prototypes to align stakeholders and test assumptions" },
       { label: "Stakeholder Alignment", detail: "Cross-functional buy-in from ops, risk, tech, and leadership" },
     ],
-    skills: ["UX Research", "Prototyping", "Stakeholder Management", "Competitive Analysis", "Product-Led Growth"],
-    tools: ["Figma", "v0 (Vercel)", "Lovable.dev", "Miro"],
+    capabilities: [
+      { category: "Product & Strategy", items: ["UX Research", "Competitive Benchmarking", "Product-Led Growth", "Stakeholder Management", "Journey Mapping"], color: "blue" as const },
+      { category: "Design & Prototyping", items: ["Figma", "Interactive Prototyping", "Wireframing", "User Flow Design"], color: "purple" as const },
+    ],
     metrics: [
       { value: "₹450 Cr", label: "Loan book size" },
       { value: "2–3×", label: "Growth opportunity" },
@@ -173,15 +202,17 @@ export const sbiProcessFlows = {
   },
   yonoPrototypes: {
     title: "YONO Distributor Life — Rapid Prototyping",
-    subtitle: "Vibe-coded prototypes to visualize distributor experiences on YONO platform.",
+    subtitle: "Vibe-coded prototypes for stakeholder demos and validation — outside production environment.",
     steps: [
       { label: "Requirement Gathering", detail: "Distributor needs from field, contest tracking gaps" },
       { label: "Rapid Prototyping", detail: "Built functional prototypes using v0, Lovable, Copilot" },
       { label: "Stakeholder Demo", detail: "Live demos to leadership, collected feedback" },
       { label: "Iteration", detail: "Refined based on feedback, handed specs to engineering" },
     ],
-    skills: ["Rapid Prototyping", "Vibe Coding", "Stakeholder Management", "Product Specs"],
-    tools: ["v0 (Vercel)", "Lovable.dev", "GitHub Copilot", "Cursor", "Figma"],
+    capabilities: [
+      { category: "Rapid Prototyping", items: ["v0 (Vercel)", "Lovable.dev", "GitHub Copilot", "Cursor", "Figma"], color: "cyan" as const },
+      { category: "Product Delivery", items: ["Stakeholder Demos", "Spec Writing", "Feedback Iteration", "Engineering Handoff"], color: "blue" as const },
+    ],
     metrics: [
       { value: "3 weeks→2", label: "Deployment cycle cut" },
       { value: "40+", label: "Initiatives powered" },
@@ -200,8 +231,10 @@ export const cloudcraftzFlow = {
       { label: "Lean Canvas Eval", detail: "Evaluated each vertical on viability, feasibility, desirability" },
       { label: "Kill/Go Decisions", detail: "Kill/go calls on 10 verticals — prioritized talent acquisition & B2B sales intelligence" },
     ],
-    skills: ["Product Discovery", "Lean Canvas", "Stakeholder Interviews", "Market Sizing", "Prioritization"],
-    tools: ["Miro", "Notion", "Google Sheets", "Figma"],
+    capabilities: [
+      { category: "Product Discovery", items: ["Stakeholder Interviews", "Lean Canvas", "Market Sizing", "Prioritization Frameworks", "Kill/Go Analysis"], color: "cyan" as const },
+      { category: "Research & Documentation", items: ["Miro", "Notion", "Competitive Analysis", "Industry Mapping"], color: "purple" as const },
+    ],
     metrics: [
       { value: "40+", label: "Expert interviews" },
       { value: "10", label: "Industries evaluated" },
@@ -218,8 +251,11 @@ export const cloudcraftzFlow = {
       { label: "V1 Scoping", detail: "Scoped MVP to resume validation — the highest-signal, lowest-risk entry point" },
       { label: "Engineering Handoff", detail: "Engineering shipped MVP directly from product specs" },
     ],
-    skills: ["0→1 Product Design", "PRDs", "Wireframing", "GTM Strategy", "Pricing", "LLM Product Design"],
-    tools: ["Figma", "Miro", "Notion"],
+    capabilities: [
+      { category: "0→1 Product", items: ["PRDs", "User Journeys", "Information Architecture", "MVP Scoping", "Wireframing"], color: "cyan" as const },
+      { category: "Strategy & GTM", items: ["GTM Strategy", "Pricing Model", "Competitive Positioning", "LLM Product Design"], color: "purple" as const },
+      { category: "Design", items: ["Figma", "Miro", "Notion"], color: "blue" as const },
+    ],
     metrics: [
       { value: "0→1", label: "From scratch to MVP" },
       { value: "V1", label: "Shipped from specs" },
@@ -240,8 +276,11 @@ export const accentureFlow = {
       { label: "Process Standardization", detail: "Created SOPs, reporting formats, escalation frameworks" },
       { label: "Governance", detail: "Presented to client VP+ leadership in governance forums" },
     ],
-    skills: ["Risk Assessment", "Process Design", "Stakeholder Communication", "Agile Delivery", "Governance"],
-    tools: ["Jira", "Excel", "ServiceNow", "Confluence"],
+    capabilities: [
+      { category: "Delivery & Process", items: ["Risk-Based Triage", "Process Design", "SOP Creation", "Agile Delivery", "Sprint Planning"], color: "emerald" as const },
+      { category: "Governance & Reporting", items: ["VP+ Governance Forums", "Escalation Frameworks", "Audit Reporting", "Stakeholder Communication"], color: "amber" as const },
+      { category: "Execution Stack", items: ["Jira", "ServiceNow", "Confluence", "Miro"], color: "blue" as const },
+    ],
     metrics: [
       { value: "6,000+", label: "Vulnerabilities triaged" },
       { value: "Monthly→Weekly", label: "Release cycle improvement" },
@@ -250,3 +289,53 @@ export const accentureFlow = {
     ],
   },
 };
+
+// ─── MBA Extra Data ───
+
+export const mbaLeadership = {
+  role: "General Secretary, Operations Committee",
+  description: "Led campus operations, event coordination, and logistics across the student body.",
+};
+
+export const caseCompetitions = [
+  { title: "L'Oreal Sustainability Challenge", result: "Winner", detail: "73K+ participants. Institution's first national case competition win.", highlight: true },
+  { title: "ISB E-Guerra", result: "Top 4", detail: "Ran a live e-commerce storefront — ₹1L GMV in 5 days.", highlight: true },
+  { title: "B-School Leaders 2024", result: "Top 100", detail: "Unstop; 2L+ nationally. #1 within institution.", highlight: true },
+  { title: "Nerolac Case Competition", result: "Finalist", detail: "National-level case competition.", highlight: false },
+  { title: "8 College Case Competitions", result: "Podium Finishes", detail: "Consistently placed on the podium across inter-college competitions.", highlight: false },
+];
+
+// ─── Undergrad Extra Data ───
+
+export const undergradKnowledge = [
+  { topic: "Artificial Intelligence", description: "Machine learning fundamentals, neural networks, NLP basics, search algorithms" },
+  { topic: "Cloud Computing", description: "Distributed systems, virtualization, cloud service models (IaaS/PaaS/SaaS), deployment" },
+  { topic: "Data Structures & Algorithms", description: "Trees, graphs, dynamic programming, complexity analysis, sorting & searching" },
+  { topic: "Big Data", description: "Hadoop ecosystem, MapReduce, distributed storage, data pipelines" },
+  { topic: "Internet of Things", description: "Embedded systems, sensor networks, edge computing, communication protocols" },
+  { topic: "Blockchain", description: "Distributed ledgers, consensus mechanisms, smart contracts, cryptographic fundamentals" },
+];
+
+// ─── Volunteer Work ───
+
+export const volunteerWork = [
+  {
+    org: "Youth for Seva",
+    role: "Volunteer",
+    period: "2018 – 2022",
+    items: [
+      "Taught spoken English and mathematics to underprivileged 8th–10th graders",
+      "Recorded textbook audio content for visually impaired students",
+      "Participated in plantation drives and women safety awareness campaigns",
+    ],
+  },
+  {
+    org: "Rotaract Club of Bangalore South",
+    role: "Treasurer",
+    period: "2018 – 2020",
+    items: [
+      "Managed club membership and annual budgets",
+      "Organized community events and service projects",
+    ],
+  },
+];
