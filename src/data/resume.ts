@@ -240,7 +240,7 @@ export const sbiProcessFlows = {
       insight: "The core issue wasn't distribution reach — it was the selling model. E-commerce works for products you already understand. Insurance needs discovery. Shifting to need-based selling would reduce mis-selling and let customers self-serve with confidence.",
       decision: "Designed prototypes that shifted the experience from product-first to need-first — guided journeys based on life stage, goals, and risk appetite. Built rapid prototypes using v0, Lovable.dev, GitHub Copilot, and Cursor for stakeholder demos and validation.",
       tradeoffs: "Need-based flows are longer than catalog browsing. Balanced depth of discovery with speed — kept the guided flow to 3–4 steps before showing recommendations. Used rapid prototyping outside production to validate before committing engineering effort.",
-      outcome: "Validated need-based selling model with stakeholders. Prototypes used for leadership demos and alignment — not production.",
+      outcome: "Validated need-based selling model with stakeholders. Prototypes used for leadership demos and alignment — not yet in production.",
     } as CaseStudy,
     steps: [
       { label: "Problem Framing", detail: "E-commerce selling model → mis-selling risk, low self-buy" },
@@ -253,10 +253,7 @@ export const sbiProcessFlows = {
       { category: "Rapid Prototyping", items: ["v0 (Vercel)", "Lovable.dev", "GitHub Copilot", "Cursor"], color: "cyan" as const },
       { category: "Product Delivery", items: ["Need-Based Selling Design", "Stakeholder Demos", "Spec Writing", "Engineering Handoff"], color: "blue" as const },
     ],
-    metrics: [
-      { value: "3 weeks→2", label: "Deployment cycle cut" },
-      { value: "40+", label: "Initiatives powered" },
-    ],
+    metrics: [],
   },
 };
 

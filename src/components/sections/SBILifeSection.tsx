@@ -101,8 +101,8 @@ function ProcessFlow({ flow }: { flow: (typeof sbiProcessFlows)[FlowKey] }) {
       </div>
 
       {/* Capabilities + Metrics */}
-      <div className="grid sm:grid-cols-3 gap-4">
-        <div className="sm:col-span-2 rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
+      <div className={`grid ${flow.metrics.length > 0 ? "sm:grid-cols-3" : "sm:grid-cols-1"} gap-4`}>
+        <div className={`${flow.metrics.length > 0 ? "sm:col-span-2" : ""} rounded-xl border border-slate-800/80 bg-slate-900/50 p-5`}>
           <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">How It Was Built</h4>
           <div className="grid sm:grid-cols-2 gap-4">
             {flow.capabilities.map((cap, i) => (
@@ -111,20 +111,22 @@ function ProcessFlow({ flow }: { flow: (typeof sbiProcessFlows)[FlowKey] }) {
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <BarChart3 className="w-4 h-4 text-cyan-400" />
-            <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">Key Metrics</h4>
+        {flow.metrics.length > 0 && (
+          <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <BarChart3 className="w-4 h-4 text-cyan-400" />
+              <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">Key Metrics</h4>
+            </div>
+            <div className="space-y-2">
+              {flow.metrics.map((m, i) => (
+                <div key={i} className="flex items-baseline gap-2">
+                  <span className="text-sm font-bold gradient-text">{m.value}</span>
+                  <span className="text-xs text-slate-500">{m.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="space-y-2">
-            {flow.metrics.map((m, i) => (
-              <div key={i} className="flex items-baseline gap-2">
-                <span className="text-sm font-bold gradient-text">{m.value}</span>
-                <span className="text-xs text-slate-500">{m.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
