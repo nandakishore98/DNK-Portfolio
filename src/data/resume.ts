@@ -25,7 +25,7 @@ export const experiences: Experience[] = [
     period: "2024 – 2026",
     location: "Mumbai",
     description:
-      "Reported to the President's Office. Owned the AI roadmap, led vendor evaluation, and shipped the org's first customer-facing Gen AI product to 4.5 Cr policyholders. Made build-vs-buy decisions, navigated IRDAI compliance, and turned a data-trust problem into a 10× engagement platform.",
+      "Reported to the President's Office. Contributed to board strategy positioning SBI Life as a tech-first insurer — defined key digital initiatives across customer, distributor, and employee verticals. The Conversational AI program and Copilot advisory were direct outcomes of this strategy work. Owned the AI roadmap, shipped the org's first customer-facing Gen AI product to 4.5 Cr policyholders, and turned a data-trust problem into a 10× engagement platform.",
     projects: [],
     bullets: [],
   },
@@ -98,7 +98,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Rapid Prototyping",
     skills: [
-      "v0 (Vercel)", "Lovable.dev", "Cursor", "Replit", "Figma",
+      "v0 (Vercel)", "Lovable.dev", "Cursor", "Replit",
     ],
   },
   {
@@ -206,25 +206,26 @@ export const sbiProcessFlows = {
     ],
   },
   loanAgainstPolicy: {
-    title: "Policy Loan Journey — UX & Product-Led Growth",
+    title: "Loan Against Policy — UX & Product-Led Growth",
     subtitle: "A ₹450 Cr book sitting under-monetized because the UX treated it like a back-office workflow.",
     caseStudy: {
-      problem: "Policy loans at SBI Life were a ₹450 Cr book with 2–3× growth potential, but the UX was built for ops teams, not borrowers. Drop-off rates were high and users had no visibility into loan status.",
-      insight: "Borrowers compared the experience to KreditBee and Navi — not other insurers. The competition for attention was fintech, not legacy. The journey needed to feel like a lending app, not an insurance portal.",
-      decision: "Benchmarked against 5 lending apps, redesigned the end-to-end flow with loan tracking, statements, and top-up features. Built interactive prototypes to win cross-functional buy-in from ops, risk, and tech.",
+      problem: "Loan against policy at SBI Life was a ₹450 Cr book with 2–3× growth potential, but the UX was built for ops teams, not borrowers. Drop-off rates were high, eligible policyholders weren't aware of the feature, and there were no proactive nudges.",
+      insight: "Borrowers compared the experience to Groww, SBI Bank's lending flow, and fintech apps — not other insurers. The competition for attention was fintech UX, not legacy portals. The journey needed to feel like a lending app, and eligible policyholders needed to be surfaced the option proactively.",
+      decision: "Benchmarked against Groww, SBI Bank, and lending fintechs. Redesigned the end-to-end flow with loan tracking, statements, and top-up features. Recommended proactive nudges on the customer app and a clear CTA for eligible policyholders to improve business volumes.",
       tradeoffs: "Risk team wanted more friction (verification steps). I pushed for progressive disclosure — verify upfront, then get out of the way. Compromised with smart defaults + optional manual review.",
       outcome: "₹450 Cr loan book repositioned for 2–3× growth. Cross-functional alignment achieved across ops, risk, tech, and leadership.",
     } as CaseStudy,
     steps: [
-      { label: "Benchmarking", detail: "Analyzed lending apps (KreditBee, Navi, etc.) for UX patterns" },
+      { label: "Benchmarking", detail: "Analyzed Groww, SBI Bank, and lending fintechs for UX patterns" },
       { label: "User Research", detail: "Interviewed borrowers on pain points, drop-offs, trust signals" },
       { label: "Journey Redesign", detail: "Loan tracking, statements, top-up features, simplified flow" },
+      { label: "Nudge Strategy", detail: "Recommended proactive nudges on customer app + CTA for eligible policyholders" },
       { label: "Prototyping", detail: "Interactive prototypes to align stakeholders and test assumptions" },
       { label: "Stakeholder Alignment", detail: "Cross-functional buy-in from ops, risk, tech, and leadership" },
     ],
     capabilities: [
       { category: "Product & Strategy", items: ["UX Research", "Competitive Benchmarking", "Product-Led Growth", "Stakeholder Management", "Journey Mapping"], color: "blue" as const },
-      { category: "Design & Prototyping", items: ["Figma", "Interactive Prototyping", "Wireframing", "User Flow Design"], color: "purple" as const },
+      { category: "Design & Prototyping", items: ["Interactive Prototyping", "Wireframing", "User Flow Design"], color: "purple" as const },
     ],
     metrics: [
       { value: "₹450 Cr", label: "Loan book size" },
@@ -232,17 +233,25 @@ export const sbiProcessFlows = {
     ],
   },
   yonoPrototypes: {
-    title: "YONO Distributor Life — Rapid Prototyping",
-    subtitle: "When the org doesn't have a prototyping culture, you build it yourself.",
+    title: "YONO Distributor Life — Need-Based Selling & Rapid Prototyping",
+    subtitle: "Shifting from e-commerce-based selling to need-based — reduce mis-selling, improve self-buy.",
+    caseStudy: {
+      problem: "YONO's insurance distribution relied on e-commerce-style product listing — users browsed plans like a catalog. This led to mis-selling risk, poor conversion, and low self-buy rates because customers couldn't self-assess which policy fit their needs.",
+      insight: "The core issue wasn't distribution reach — it was the selling model. E-commerce works for products you already understand. Insurance needs discovery. Shifting to need-based selling would reduce mis-selling and let customers self-serve with confidence.",
+      decision: "Designed prototypes that shifted the experience from product-first to need-first — guided journeys based on life stage, goals, and risk appetite. Built rapid prototypes using v0, Lovable.dev, GitHub Copilot, and Cursor for stakeholder demos and validation.",
+      tradeoffs: "Need-based flows are longer than catalog browsing. Balanced depth of discovery with speed — kept the guided flow to 3–4 steps before showing recommendations. Used rapid prototyping outside production to validate before committing engineering effort.",
+      outcome: "Validated need-based selling model with stakeholders. Prototypes used for leadership demos and alignment — not production.",
+    } as CaseStudy,
     steps: [
-      { label: "Requirement Gathering", detail: "Distributor needs from field, contest tracking gaps" },
-      { label: "Rapid Prototyping", detail: "Built functional prototypes using v0, Lovable, Copilot" },
+      { label: "Problem Framing", detail: "E-commerce selling model → mis-selling risk, low self-buy" },
+      { label: "Need-Based Design", detail: "Guided journeys based on life stage, goals, risk appetite" },
+      { label: "Rapid Prototyping", detail: "Built functional prototypes using v0, Lovable.dev, Copilot, Cursor" },
       { label: "Stakeholder Demo", detail: "Live demos to leadership, collected feedback" },
       { label: "Iteration", detail: "Refined based on feedback, handed specs to engineering" },
     ],
     capabilities: [
-      { category: "Rapid Prototyping", items: ["v0 (Vercel)", "Lovable.dev", "GitHub Copilot", "Cursor", "Figma"], color: "cyan" as const },
-      { category: "Product Delivery", items: ["Stakeholder Demos", "Spec Writing", "Feedback Iteration", "Engineering Handoff"], color: "blue" as const },
+      { category: "Rapid Prototyping", items: ["v0 (Vercel)", "Lovable.dev", "GitHub Copilot", "Cursor"], color: "cyan" as const },
+      { category: "Product Delivery", items: ["Need-Based Selling Design", "Stakeholder Demos", "Spec Writing", "Engineering Handoff"], color: "blue" as const },
     ],
     metrics: [
       { value: "3 weeks→2", label: "Deployment cycle cut" },
@@ -260,22 +269,24 @@ export const cloudcraftzFlow = {
     caseStudy: {
       problem: "AI/ML startup with deep BFSI expertise but founders wanted to explore non-finance domains — legal, healthcare, HR, sales, logistics. 10 industries on the table, no framework for picking the right bets.",
       insight: "Most verticals had interesting problems but terrible unit economics for an early-stage LLM product. The biggest TAM on paper is rarely where a 10-person team can win. I needed to identify where founder expertise + LLM capability created a defensible edge.",
-      decision: "Built a Lean Canvas scoring framework across viability, feasibility, and desirability. Interviewed 40+ domain experts. Evaluated all 10 verticals and prioritized talent acquisition and B2B sales intelligence — highest signal, most defensible data moats. Also helped build internal tools to strengthen the core before going external.",
+      decision: "Built a Lean Canvas scoring framework across viability, feasibility, and desirability. Interviewed 40+ domain experts. Evaluated all 10 verticals and prioritized talent acquisition and B2B sales intelligence — highest signal, most defensible data moats. Also developed an AI maturity scoring framework to prioritize target customers across 35+ insurance firms, enhancing B2B positioning. Helped build internal tools to strengthen the core before going external.",
       tradeoffs: "Passing on 8 verticals meant walking away from genuinely interesting problems (legal AI, healthcare documentation). But spreading thin would have been worse. Also chose to invest in internal tooling over immediate monetization — building the foundation first.",
-      outcome: "2 high-growth verticals identified with clear specs. Engineering focused instead of scattered. Talent acquisition became the lead product. Internal tools strengthened operational efficiency.",
+      outcome: "2 high-growth verticals identified with clear specs. Engineering focused instead of scattered. Talent acquisition became the lead product. AI maturity framework enabled targeted B2B outreach across 35+ insurance firms. Internal tools strengthened operational efficiency.",
     } as CaseStudy,
     steps: [
       { label: "Expert Interviews", detail: "40+ domain experts across 10 industries" },
       { label: "Lean Canvas Eval", detail: "Evaluated each vertical on viability, feasibility, desirability" },
       { label: "Prioritization", detail: "Evaluated 10 verticals — prioritized talent acquisition & B2B sales intelligence as highest-growth bets" },
+      { label: "AI Maturity Framework", detail: "Built scoring framework to prioritize target customers across 35+ insurance firms for B2B positioning" },
     ],
     capabilities: [
-      { category: "Product Discovery", items: ["Stakeholder Interviews", "Lean Canvas", "Market Sizing", "Prioritization Frameworks", "Go/No-Go Analysis"], color: "cyan" as const },
+      { category: "Product Discovery", items: ["Stakeholder Interviews", "Lean Canvas", "Market Sizing", "Prioritization Frameworks", "Go/No-Go Analysis", "AI Maturity Scoring"], color: "cyan" as const },
       { category: "Research & Documentation", items: ["Miro", "Notion", "Competitive Analysis", "Industry Mapping"], color: "purple" as const },
     ],
     metrics: [
       { value: "40+", label: "Expert interviews" },
       { value: "10", label: "Industries evaluated" },
+      { value: "35+", label: "Insurance firms scored" },
       { value: "2", label: "Verticals prioritized" },
     ],
   },

@@ -26,6 +26,7 @@ Structured board-level operations and technology strategy. Led AI roadmap and ev
 
 Key Projects:
 - **Conversational AI — Policy Awareness, Servicing & Renewals (Apr 2025 – Mar 2026):**
+  - Contributed to board strategy positioning SBI Life as a tech-first insurer — defined key digital initiatives across customer, distributor, and employee verticals. The Conversational AI program and Copilot advisory were direct outcomes of this strategy work.
   - Renewal outreach was structurally broken — high-cost call centers for low-ticket policies, rural customers across 10+ languages unreachable, fragmented communication ownership.
   - Adopted failure-first architecture: guardrails, human fallback, audit trails before scaling flows. Hybrid model (LLM + structured knowledge + human-in-loop) over full automation.
   - Phase 1 shipped pilot in 4 weeks (org record). Phase 2 deliberately slowed WhatsApp by ~2 weeks for auditability and compliance sign-offs.
@@ -40,19 +41,20 @@ Key Projects:
   - Reduced data errors from 5% to <1%.
   - Capabilities: UX Research, Product-Led Growth, Data Governance Frameworks, MIS Systems Integration, Data Modeling, SQL, Power BI, Funnel Analytics
 
-- **Policy Loan Journey — UX & Product-Led Growth:**
-  - ₹450 Cr loan book with 2-3x growth opportunity. Benchmarked against lending apps (KreditBee, Navi), redesigned with loan tracking, statements, and top-up features.
-  - Capabilities: UX Research, Competitive Benchmarking, Figma, Interactive Prototyping
+- **Loan Against Policy — UX & Product-Led Growth:**
+  - ₹450 Cr loan book with 2-3x growth opportunity. Benchmarked against Groww, SBI Bank, and lending fintechs. Redesigned with loan tracking, statements, and top-up features. Recommended proactive nudges on customer app + CTA for eligible policyholders to improve business volumes.
+  - Capabilities: UX Research, Competitive Benchmarking, Interactive Prototyping, Journey Mapping
 
-- **YONO Distributor Life — Rapid Prototyping:**
+- **YONO Distributor Life — Need-Based Selling & Rapid Prototyping:**
+  - Shifted YONO's insurance distribution from e-commerce-based selling to need-based — guided journeys based on life stage, goals, and risk appetite to reduce mis-selling and improve self-buy.
   - Built rapid prototypes for stakeholder demos and validation using v0 (Vercel), Lovable.dev, GitHub Copilot, Cursor.
   - Used for rapid prototyping outside production environment — not enterprise tooling.
 
 **2. Product Intern | Cloudcraftz (AI/ML startup), Kolkata (Jan – Jun 2023)**
 - BFSI-heavy founders exploring non-finance domains. Interviewed 40+ domain experts across 10 industries to identify highest-growth LLM opportunities.
-- Evaluated all 10 verticals, prioritized talent acquisition and B2B sales intelligence. Also helped build internal tools to strengthen the core.
+- Evaluated all 10 verticals, prioritized talent acquisition and B2B sales intelligence. Developed an AI maturity scoring framework to prioritize target customers across 35+ insurance firms, enhancing B2B positioning. Also helped build internal tools to strengthen the core.
 - Designed 0→1 LLM-driven AI Hiring Platform — spec, journeys, wireframes, pricing, GTM. Engineering shipped MVP from specs.
-- Capabilities: Product Discovery, Lean Canvas, Market Sizing, PRDs, GTM Strategy, Pricing Model, LLM Product Design
+- Capabilities: Product Discovery, Lean Canvas, Market Sizing, PRDs, GTM Strategy, Pricing Model, LLM Product Design, AI Maturity Scoring
 
 **3. Application Development Associate | Accenture Solutions, Bengaluru (Nov 2020 – Jun 2022)**
 - Fortune 500 global energy client: Inherited 6,000+ vulnerability backlog with releases blocked.
@@ -70,7 +72,7 @@ Key Projects:
 - **AI & Platforms:** Conversational AI, LLM Applications, Prompt Engineering, Vendor Evaluation, API Integrations, Guardrails Design, Hybrid LLM Architecture
 - **Data & Analytics:** SQL, Python, Power BI, Tableau, Funnel Analytics, Usage Tracking, Data Governance, Sentiment Analysis
 - **Governance & Compliance:** IRDAI Compliance, Data Privacy Frameworks, Audit Trails, Escalation Frameworks, VP+ Governance Forums
-- **Rapid Prototyping:** v0 (Vercel), Lovable.dev, Cursor, Replit, Figma (used for stakeholder demos and validation, not production)
+- **Rapid Prototyping:** v0 (Vercel), Lovable.dev, Cursor, Replit (used for stakeholder demos and validation, not production)
 - **Domain:** Insurance (Underwriting, Claims, Renewals), BFSI Compliance & Governance
 
 ---
