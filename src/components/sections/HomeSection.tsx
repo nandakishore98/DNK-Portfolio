@@ -11,11 +11,20 @@ import {
   Code2,
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import { profile, skillCategories, certifications, achievements } from "@/data/resume";
+import { profile, certifications } from "@/data/resume";
 
 interface HomeSectionProps {
   onChatOpen?: () => void;
 }
+
+const proofSnippets = [
+  { label: "Conversational AI", proof: "Shipped to 4.5 Cr policyholders — failure-first design, IRDAI compliance, hybrid LLM architecture" },
+  { label: "0→1 Product Design", proof: "Built spec for AI hiring platform at Cloudcraftz. Engineering shipped V1 directly from it" },
+  { label: "Data Governance", proof: "Unified MIS across 3 channels at SBI Life. Cut data errors from 5% to <1%" },
+  { label: "Vendor Evaluation", proof: "Led GenAI vendor RFP — POC scoring, integration feasibility, compliance readiness" },
+  { label: "Product-Led Growth", proof: "Grew distributor dashboard from 5K to 50K DAU by fixing the data layer, not the UX" },
+  { label: "Enterprise Delivery", proof: "Reduced 6,000+ vulnerability backlog to <20 active items. Best People Award (top 4/100+)" },
+];
 
 export default function HomeSection({ onChatOpen }: HomeSectionProps) {
   return (
@@ -38,42 +47,13 @@ export default function HomeSection({ onChatOpen }: HomeSectionProps) {
           </h2>
         </ScrollReveal>
 
-        {/* Key metrics */}
-        <ScrollReveal delay={0.15}>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-            {achievements.map((a, i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-5 text-center hover:border-blue-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/5"
-              >
-                <p className="text-2xl sm:text-3xl font-bold gradient-text mb-1">
-                  {a.metric}
-                </p>
-                <p className="text-sm font-medium text-slate-300">
-                  {a.label}
-                </p>
-                <p className="text-xs text-slate-500 mt-1">{a.description}</p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-
-        {/* Skills by category */}
-        <div className="space-y-8 mb-12">
-          {skillCategories.map((cat, i) => (
-            <ScrollReveal key={i} delay={0.1 * i}>
-              <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">
-                {cat.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1.5 rounded-full text-sm border border-slate-700/80 bg-slate-800/50 text-slate-300 hover:border-blue-500/40 hover:text-blue-400 transition-all duration-200"
-                  >
-                    {skill}
-                  </span>
-                ))}
+        {/* Proof snippets instead of generic skill tags */}
+        <div className="space-y-3 mb-12">
+          {proofSnippets.map((item, i) => (
+            <ScrollReveal key={i} delay={0.05 * i}>
+              <div className="flex items-start gap-3 py-2">
+                <span className="text-sm font-semibold text-slate-200 w-40 flex-shrink-0">{item.label}</span>
+                <span className="text-sm text-slate-500">{item.proof}</span>
               </div>
             </ScrollReveal>
           ))}
@@ -81,9 +61,6 @@ export default function HomeSection({ onChatOpen }: HomeSectionProps) {
 
         {/* Certifications */}
         <ScrollReveal delay={0.2}>
-          <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">
-            Certifications
-          </h3>
           <div className="flex flex-wrap gap-3 mb-12">
             {certifications.map((cert) => (
               <span
@@ -99,7 +76,7 @@ export default function HomeSection({ onChatOpen }: HomeSectionProps) {
 
         {/* Contact */}
         <ScrollReveal delay={0.25}>
-          <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-8">
+          <div id="contact" className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-8">
             <h3 className="text-xl font-bold text-slate-100 mb-6">
               Let&apos;s Connect
             </h3>

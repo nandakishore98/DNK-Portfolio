@@ -66,7 +66,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-xs text-slate-500 dark:text-slate-600 border-t border-slate-200 dark:border-slate-800/50">
+      <footer className="py-8 text-center text-xs text-slate-600 border-t border-slate-800/50">
         &copy; {new Date().getFullYear()} Nanda Kishore D. Vibe coded with Next.js &amp; Claude.
       </footer>
 

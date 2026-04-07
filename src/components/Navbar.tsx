@@ -6,9 +6,9 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Journey", href: "/", tooltip: null },
-  { label: "My AI", href: "#", tooltip: "Chat with my AI assistant", isChat: true },
-  { label: "PM Mindset", href: "/pm-mindset", tooltip: "Want to know how I think?" },
-  { label: "My Ideas", href: "/ideas", tooltip: "Want to know what excites me?" },
+  { label: "My AI", href: "#", tooltip: "Paste a JD and get a fit analysis", isChat: true },
+  { label: "How I Think", href: "/pm-mindset", tooltip: "Tradeoffs, kill frameworks, AI autonomy" },
+  { label: "My Ideas", href: "/ideas", tooltip: "Product ideas I'm exploring" },
 ];
 
 interface NavbarProps {
