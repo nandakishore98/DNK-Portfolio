@@ -17,7 +17,7 @@ export default function Home() {
   const openChat = () => setChatOpen(true);
 
   return (
-    <div className="relative bg-white dark:bg-slate-950 min-h-screen transition-colors duration-300">
+    <div className="relative bg-slate-950 min-h-screen">
       <Navbar onChatOpen={openChat} />
 
       {/* Journey line */}

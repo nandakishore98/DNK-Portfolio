@@ -28,7 +28,7 @@ export default function IdeasPage() {
   const [chatOpen, setChatOpen] = useState(false);
 
   return (
-    <div className="relative bg-white dark:bg-slate-950 min-h-screen transition-colors duration-300">
+    <div className="relative bg-slate-950 min-h-screen">
       <Navbar onChatOpen={() => setChatOpen(true)} />
 
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
