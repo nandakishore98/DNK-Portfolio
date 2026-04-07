@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, monospace;
+  --color-accent: #3b82f6;
+  --color-accent-purple: #9333ea;
+  --color-accent-cyan: #22d3ee;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: inherit;
+}
+
+/* Glow utility */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.1);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.4), 0 0 60px rgba(147, 51, 234, 0.1);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Journey line glow */
+.journey-line {
+  background: linear-gradient(180deg, #3b82f6, #9333ea, #22d3ee);
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.light .glass {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Animated gradient border */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-border {
+  background: linear-gradient(135deg, #3b82f6, #9333ea, #22d3ee, #3b82f6);
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Pulse glow for journey dots */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(147, 51, 234, 0.3);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Grid background for hero */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.light .grid-bg {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+}
+
+/* Bounce animation for scroll indicator */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
