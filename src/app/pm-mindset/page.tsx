@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Brain, ArrowLeft, CheckCircle, AlertTriangle, Shield, Zap, Layers, ArrowRight } from "lucide-react";
+import { Brain, ArrowLeft, CheckCircle, AlertTriangle, Scale, Zap, Layers, ArrowRight, Target, GitBranch, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -9,52 +9,107 @@ import ChatWidget from "@/components/chat/ChatWidget";
 
 const articles = [
   {
-    id: "building-conv-ai",
-    icon: AlertTriangle,
+    id: "tradeoffs-regulated-ai",
+    icon: Scale,
     accent: "blue",
-    title: "What Building Conversational AI in Financial Services Actually Takes",
-    summary: "The hardest part was never getting the AI to work — it was designing failure modes, fixing the data layer, navigating compliance, and making the business case past a POC.",
+    title: "Tradeoff Thinking in Regulated AI",
+    summary: "Every AI product decision in financial services is a bet between speed, safety, cost, and customer experience. Here's how I navigate those bets.",
     content: {
       cards: [
-        { icon: AlertTriangle, title: "Failure Design", description: "Designing what happens when AI gets it wrong — graceful fallbacks, not dead ends. Every conversation flow needs a recovery path that feels intentional, not broken." },
-        { icon: Layers, title: "Knowledge Base Reality", description: "Fixing the data layer everyone assumes AI will magically work on top of. Structured FAQs, policy docs, product catalogs — all need curation before any model touches them." },
-        { icon: Shield, title: "Regulatory Compliance", description: "Compliance as a design constraint, not a checkbox — every flow must hold up to audit. In financial services, one wrong auto-response can trigger regulatory scrutiny." },
-        { icon: Zap, title: "Beyond the POC", description: "Building the strategic case for why the investment matters past a pilot. POCs impress stakeholders; production systems need sustained funding, ops support, and measurable ROI." },
+        {
+          icon: Scale,
+          title: "Cost vs. Experience",
+          description: "Call centers cost ₹40–60 per interaction. AI costs ₹2–5. But a bad AI response in insurance can trigger regulatory action. I designed the Conversational AI system at SBI Life to handle 80% of volume autonomously while routing the remaining 20% — the high-risk, high-emotion cases — to humans. The cost savings came from volume, not from eliminating human judgment.",
+        },
+        {
+          icon: ShieldAlert,
+          title: "Automation vs. Control",
+          description: "The fastest path to production was a fully automated bot. I chose a hybrid: AI handles policy status, FAQs, and renewal nudges; humans handle claims disputes and complaints. This isn't a technical limitation — it's a product decision. Automating a complaint response in insurance is a regulatory risk I chose not to take.",
+        },
+        {
+          icon: Zap,
+          title: "Speed vs. Trust",
+          description: "I could have shipped the conversational AI pilot 2 weeks faster by skipping the audit trail layer. I didn't. That compliance foundation is what unlocked sign-off for the 4.5 Cr rollout. The delay was the investment.",
+        },
+        {
+          icon: GitBranch,
+          title: "Failure-First Design",
+          description: "Most AI products are designed for the happy path. I start with: what happens when it's wrong? Every flow I shipped at SBI Life had a recovery path — graceful fallback, human escalation, or 'I don't know' response. The failure mode IS the product in regulated environments.",
+        },
       ],
-      callout: "The AI PM is the integrator — deep enough on tech to push back, sharp enough on domain to know where AI moves a metric, and keeping CX as the non-negotiable.",
+      callout: "The AI PM's job isn't to ship AI. It's to decide where AI earns its place — and where it doesn't. That's a product decision, not a technology one.",
+    },
+  },
+  {
+    id: "when-to-kill",
+    icon: Target,
+    accent: "red",
+    title: "When to Kill a Product Idea",
+    summary: "At Cloudcraftz, I evaluated 10 LLM verticals and killed 8 of them. Here's the framework that made those calls defensible.",
+    content: {
+      items: [
+        {
+          question: "Can a 10-person team win here?",
+          detail: "Big market ≠ right market. Healthcare AI is a massive opportunity, but an early-stage startup competing against Epic, Cerner, and established EMR integrations is a losing bet. I killed healthcare despite the TAM because the go-to-market required enterprise sales cycles we couldn't afford.",
+        },
+        {
+          question: "Is the data moat real or imagined?",
+          detail: "If the product works equally well with public data, there's no defensibility. I prioritized verticals where proprietary data gave us a compounding advantage — talent acquisition (resume databases) and B2B sales intelligence (CRM data).",
+        },
+        {
+          question: "Does the buyer exist today?",
+          detail: "Some verticals had problems worth solving but no buyer with budget allocated. 'Interesting problem, no budget' is the graveyard of B2B AI startups. I looked for buyers already spending money on bad solutions.",
+        },
+        {
+          question: "Can we prove value in < 2 weeks?",
+          detail: "If the POC takes 3 months, the sales cycle is 6+ months. For an early-stage startup, time-to-value is survival. I prioritized verticals where we could demo meaningful output in days, not quarters.",
+        },
+        {
+          question: "Will the founding team obsess over this?",
+          detail: "This is the underrated filter. If the team isn't genuinely curious about the domain, the product quality will plateau. Passion isn't fluff — it's the difference between a mediocre V1 and a product that iterates relentlessly.",
+        },
+        {
+          question: "What's the 'worse than nothing' scenario?",
+          detail: "Every AI product has a mode where it's actively harmful. In legal AI, a wrong clause can create liability. In healthcare, a wrong recommendation can harm a patient. I assessed: if the AI fails, does the user just shrug, or does something bad happen?",
+        },
+      ],
+      callout: "Killing ideas is the highest-leverage product activity. The 8 verticals I killed freed the team to go deep on the 2 that mattered. Saying no is a product skill.",
     },
   },
   {
     id: "ai-autonomy",
     icon: Layers,
     accent: "purple",
-    title: "How I Think About AI Autonomy",
-    summary: "Continuous Calibration, Continuous Development — the CCCD framework for building trust. Start conservative, earn autonomy through performance.",
+    title: "How I Calibrate AI Autonomy",
+    summary: "Not all AI decisions are equal. A balance check and a claims dispute require fundamentally different levels of trust. Here's how I think about the spectrum.",
     content: {
       levels: [
-        { level: 1, title: "Action Autonomy", subtitle: "Discrete task execution", examples: "Balance checks, FAQs, policy status, KYC queries", risk: "Low Risk", color: "text-green-400 border-green-500/30 bg-green-500/10" },
-        { level: 2, title: "Planning Autonomy", subtitle: "Multi-step orchestration", examples: "Loan applications, dispute resolution, claim filing", risk: "Medium Risk", color: "text-amber-400 border-amber-500/30 bg-amber-500/10" },
-        { level: 3, title: "End-to-End Autonomy", subtitle: "Full process management", examples: "Account onboarding, portfolio rebalancing nudges", risk: "High Volume Only", color: "text-red-400 border-red-500/30 bg-red-500/10" },
+        {
+          level: 1,
+          title: "Action Autonomy",
+          subtitle: "Low-stakes, high-volume",
+          examples: "Balance checks, FAQs, policy status, KYC queries. The AI resolves the task end-to-end. If it gets it wrong, the user retries or gets redirected. No lasting damage.",
+          risk: "Full Autonomy",
+          color: "text-green-400 border-green-500/30 bg-green-500/10",
+        },
+        {
+          level: 2,
+          title: "Guided Autonomy",
+          subtitle: "Multi-step, medium-stakes",
+          examples: "Loan applications, dispute resolution, renewal processing. The AI orchestrates the workflow but triggers human review at key decision points. Like a co-pilot — it drives, but the human approves the turns.",
+          risk: "Human-in-the-Loop",
+          color: "text-amber-400 border-amber-500/30 bg-amber-500/10",
+        },
+        {
+          level: 3,
+          title: "Human-Led + AI-Assisted",
+          subtitle: "High-stakes, irreversible",
+          examples: "Claims adjudication, underwriting decisions, complaint escalation. The human decides; the AI surfaces relevant data, past cases, and risk scores. This isn't AI limitation — it's product judgment.",
+          risk: "AI as Intelligence Layer",
+          color: "text-red-400 border-red-500/30 bg-red-500/10",
+        },
       ],
-      callout: "Getting this calibration wrong is how chatbot products lose user trust. Start conservative, earn autonomy through performance.",
-    },
-  },
-  {
-    id: "deploy-checklist",
-    icon: CheckCircle,
-    accent: "green",
-    title: "My Checklist Before Deploying Any AI-Powered Workflow",
-    summary: "A framework to ensure every conversational AI use case earns its place in production — six questions that separate real automation candidates from shiny POCs.",
-    content: {
-      items: [
-        { question: "Is it high-volume and recurring?", detail: "If the workflow doesn't handle significant daily volume, the automation investment won't pay back. AI should absorb load, not add overhead." },
-        { question: "Does it follow a definable sequence?", detail: "Conversational flows need a backbone. If the workflow can't be mapped into steps — even loosely — the bot will break in production." },
-        { question: "Can outcomes be measured?", detail: "If you can't track resolution rate, conversion, or cost-per-interaction, you can't prove value. No metrics, no mandate for continued investment." },
-        { question: "Does the workflow touch live systems?", detail: "Real impact requires system integration — CBS, CRM, payment rails. If the bot only shows static info, it's a glorified FAQ page." },
-        { question: "Can it tolerate occasional errors?", detail: "Every AI system will get things wrong. The question is whether a wrong answer causes annoyance or financial harm. That determines how much autonomy the bot gets." },
-        { question: "Is the current path slow or expensive?", detail: "The strongest case for AI is when the existing process — branch visit, call center queue, manual ops — is visibly painful for the customer or costly for the org." },
-      ],
-      callout: "If a use case doesn't clear most of these, it's not ready for AI — it needs process redesign first.",
+      callout: "The wrong calibration destroys trust. Automate too much → users distrust the system after the first bad experience. Automate too little → the AI becomes an expensive FAQ page. The product skill is finding the line — and moving it gradually as the system earns trust through performance.",
     },
   },
 ];
@@ -63,6 +118,7 @@ const accentColors: Record<string, { border: string; bg: string; text: string; i
   blue: { border: "border-blue-500/30", bg: "bg-blue-500/10", text: "text-blue-400", iconBg: "bg-blue-500/10" },
   purple: { border: "border-purple-500/30", bg: "bg-purple-500/10", text: "text-purple-400", iconBg: "bg-purple-500/10" },
   green: { border: "border-green-500/30", bg: "bg-green-500/10", text: "text-green-400", iconBg: "bg-green-500/10" },
+  red: { border: "border-red-500/30", bg: "bg-red-500/10", text: "text-red-400", iconBg: "bg-red-500/10" },
 };
 
 function ArticleList({ onSelect }: { onSelect: (index: number) => void }) {
@@ -78,7 +134,7 @@ function ArticleList({ onSelect }: { onSelect: (index: number) => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 + i * 0.1 }}
             onClick={() => onSelect(i)}
-            className={`w-full text-left rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:${colors.border} hover:bg-slate-900/80 transition-all duration-300 cursor-pointer group`}
+            className="w-full text-left rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:bg-slate-900/80 transition-all duration-300 cursor-pointer group"
           >
             <div className="flex items-start gap-4">
               <div className={`w-11 h-11 rounded-lg ${colors.iconBg} border ${colors.border} flex items-center justify-center flex-shrink-0`}>
@@ -128,7 +184,6 @@ function ArticleView({ index, onBack }: { index: number; onBack: () => void }) {
       </div>
       <p className="text-slate-400 text-sm mb-8 max-w-2xl leading-relaxed">{article.summary}</p>
 
-      {/* Article-specific content */}
       {"cards" in article.content && article.content.cards && (
         <div className="space-y-5">
           <div className="grid sm:grid-cols-2 gap-4">
@@ -166,17 +221,19 @@ function ArticleView({ index, onBack }: { index: number; onBack: () => void }) {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.08 }}
-                className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 text-center"
+                className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6"
               >
                 <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-4">
                   <span className="text-lg font-bold text-blue-400">{level.level}</span>
                 </div>
-                <h3 className="text-lg font-semibold text-slate-200 mb-1">{level.title}</h3>
-                <p className="text-xs text-slate-500 mb-4">{level.subtitle}</p>
-                <p className="text-sm text-slate-400 mb-4">{level.examples}</p>
-                <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium border ${level.color}`}>
-                  {level.risk}
-                </span>
+                <h3 className="text-lg font-semibold text-slate-200 mb-1 text-center">{level.title}</h3>
+                <p className="text-xs text-slate-500 mb-4 text-center">{level.subtitle}</p>
+                <p className="text-sm text-slate-400 mb-4 leading-relaxed">{level.examples}</p>
+                <div className="text-center">
+                  <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium border ${level.color}`}>
+                    {level.risk}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -195,18 +252,18 @@ function ArticleView({ index, onBack }: { index: number; onBack: () => void }) {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.08 }}
-                className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-green-500/30 transition-all duration-300"
+                className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-red-500/30 transition-all duration-300"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <Target className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
                   <h3 className="text-base font-semibold text-slate-200">{item.question}</h3>
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed ml-8">{item.detail}</p>
               </motion.div>
             ))}
           </div>
-          <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 px-5 py-4">
-            <p className="text-sm text-amber-300 leading-relaxed">{article.content.callout}</p>
+          <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-5 py-4">
+            <p className="text-sm text-red-300 leading-relaxed">{article.content.callout}</p>
           </div>
         </div>
       )}
@@ -244,12 +301,12 @@ export default function PMMindsetPage() {
                     <Brain className="w-6 h-6 text-blue-400" />
                   </div>
                   <div>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-slate-100">PM Mindset</h1>
-                    <p className="text-slate-400 text-sm">Want to know how I think?</p>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-slate-100">How I Think</h1>
+                    <p className="text-slate-400 text-sm">Decision frameworks from regulated AI, 0→1, and enterprise delivery</p>
                   </div>
                 </div>
                 <p className="text-slate-400 max-w-2xl mb-12 leading-relaxed">
-                  Frameworks and mental models drawn from building AI products at SBI Life, 0→1 discovery at Cloudcraftz, and enterprise delivery at Accenture.
+                  Not theoretical frameworks — these are mental models I used to make real decisions. Tradeoff thinking from shipping AI at SBI Life, kill/go frameworks from Cloudcraftz, and autonomy calibration from designing systems that handle failure gracefully.
                 </p>
               </motion.div>
 

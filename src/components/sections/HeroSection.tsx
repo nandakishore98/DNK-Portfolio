@@ -52,7 +52,7 @@ export default function HeroSection({ onChatOpen }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-lg sm:text-xl text-slate-400 mb-3 max-w-xl mx-auto lg:mx-0"
+            className="text-lg sm:text-xl text-slate-300 mb-3 max-w-xl mx-auto lg:mx-0 font-medium"
           >
             {profile.tagline}
           </motion.p>
@@ -61,9 +61,19 @@ export default function HeroSection({ onChatOpen }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-sm text-slate-500 mb-8 max-w-xl mx-auto lg:mx-0"
+            className="text-sm text-slate-500 mb-4 max-w-xl mx-auto lg:mx-0"
           >
             {profile.subtitle}
+          </motion.p>
+
+          {/* Positioning statement */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="text-sm text-slate-400 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed border-l-2 border-blue-500/30 pl-4"
+          >
+            {profile.positioningStatement}
           </motion.p>
 
           <motion.div

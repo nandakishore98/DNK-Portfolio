@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, ArrowRight, BarChart3 } from "lucide-react";
+import { MapPin, ArrowRight, BarChart3, AlertCircle, Lightbulb, GitBranch, Scale, Target } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { experiences, sbiProcessFlows } from "@/data/resume";
-import type { Capability } from "@/data/resume";
+import type { Capability, CaseStudy } from "@/data/resume";
 
 type FlowKey = keyof typeof sbiProcessFlows;
 
@@ -36,6 +36,35 @@ function CapabilityChip({ cap }: { cap: Capability }) {
   );
 }
 
+function CaseStudyCard({ cs }: { cs: CaseStudy }) {
+  const rows = [
+    { icon: AlertCircle, label: "Problem", text: cs.problem, color: "text-red-400" },
+    { icon: Lightbulb, label: "Insight", text: cs.insight, color: "text-amber-400" },
+    { icon: GitBranch, label: "Decision", text: cs.decision, color: "text-blue-400" },
+    { icon: Scale, label: "Tradeoffs", text: cs.tradeoffs, color: "text-purple-400" },
+    { icon: Target, label: "Outcome", text: cs.outcome, color: "text-emerald-400" },
+  ];
+
+  return (
+    <div className="rounded-xl border border-slate-800/80 bg-slate-900/30 p-5 mb-6">
+      <div className="space-y-3">
+        {rows.map((row) => {
+          const Icon = row.icon;
+          return (
+            <div key={row.label} className="flex items-start gap-3">
+              <div className="flex items-center gap-1.5 w-24 flex-shrink-0 pt-0.5">
+                <Icon className={`w-3.5 h-3.5 ${row.color}`} />
+                <span className={`text-xs font-semibold uppercase tracking-wider ${row.color}`}>{row.label}</span>
+              </div>
+              <p className="text-sm text-slate-400 leading-relaxed">{row.text}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function ProcessFlow({ flow }: { flow: (typeof sbiProcessFlows)[FlowKey] }) {
   return (
     <div className="space-y-8">
@@ -43,8 +72,14 @@ function ProcessFlow({ flow }: { flow: (typeof sbiProcessFlows)[FlowKey] }) {
         {flow.subtitle}
       </p>
 
+      {/* Case Study */}
+      {"caseStudy" in flow && flow.caseStudy && (
+        <CaseStudyCard cs={flow.caseStudy} />
+      )}
+
       {/* Flowchart */}
       <div className="relative">
+        <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Execution Flow</h4>
         <div className="flex flex-wrap gap-2 items-center">
           {flow.steps.map((step, i) => (
             <div key={i} className="flex items-center gap-2">
@@ -67,7 +102,6 @@ function ProcessFlow({ flow }: { flow: (typeof sbiProcessFlows)[FlowKey] }) {
 
       {/* Capabilities + Metrics */}
       <div className="grid sm:grid-cols-3 gap-4">
-        {/* Capabilities — 2 columns */}
         <div className="sm:col-span-2 rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
           <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">How It Was Built</h4>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -77,7 +111,6 @@ function ProcessFlow({ flow }: { flow: (typeof sbiProcessFlows)[FlowKey] }) {
           </div>
         </div>
 
-        {/* Metrics */}
         <div className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-5">
           <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="w-4 h-4 text-cyan-400" />

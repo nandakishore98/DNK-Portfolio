@@ -3,9 +3,11 @@ import { Experience, Education, SkillCategory, Achievement } from "@/types";
 export const profile = {
   name: "Nanda Kishore D",
   title: "Product Manager",
-  tagline: "Building AI-powered products that ship and scale",
+  tagline: "I ship AI products where failure is expensive and trust is earned",
   subtitle:
-    "MBA, BITSoM (BITS Pilani) | PMP Certified | 4 Years in Enterprise AI & Digital Product Delivery",
+    "MBA, BITSoM | PMP | 4 years owning product decisions in regulated AI, enterprise platforms & 0→1 builds",
+  positioningStatement:
+    "I make high-stakes product decisions in regulated, high-scale environments. I've shipped conversational AI to 4.5 Cr users in insurance, turned a 6,000-item vulnerability backlog into a weekly release machine, and killed 8 out of 10 product verticals to bet on the right two. I think in tradeoffs — cost vs. experience, automation vs. control, growth vs. risk — and I own the outcome either way.",
   email: "nandakishored98@gmail.com",
   phone: "(+91) 9740603400",
   linkedin: "https://linkedin.com/in/dnk1998",
@@ -23,7 +25,7 @@ export const experiences: Experience[] = [
     period: "2024 – 2026",
     location: "Mumbai",
     description:
-      "Structured board-level operations and technology strategy. Led AI roadmap and evaluation; launched the org's first customer-facing Gen AI initiative and advised on M365 + Copilot rollout.",
+      "Reported to the President's Office. Owned the AI roadmap, led vendor evaluation, and shipped the org's first customer-facing Gen AI product to 4.5 Cr policyholders. Made build-vs-buy decisions, navigated IRDAI compliance, and turned a data-trust problem into a 10× engagement platform.",
     projects: [],
     bullets: [],
   },
@@ -33,7 +35,7 @@ export const experiences: Experience[] = [
     role: "Product Intern",
     period: "2023",
     location: "Kolkata",
-    description: "AI/ML startup — Enterprise LLM product discovery and 0→1 design.",
+    description: "AI/ML startup. Interviewed 40+ domain experts, killed 8 out of 10 product verticals, and designed a 0→1 LLM hiring platform that shipped from my specs.",
     bullets: [],
   },
   {
@@ -42,7 +44,7 @@ export const experiences: Experience[] = [
     role: "Application Development Associate",
     period: "2020 – 2022",
     location: "Bengaluru",
-    description: "Enterprise application delivery for a Fortune 500 global energy client.",
+    description: "Fortune 500 global energy client. Inherited a 6,000+ vulnerability backlog that had blocked releases for years. Built the triage framework that cleared it and presented to VP+ leadership.",
     bullets: [],
   },
 ];
@@ -131,10 +133,25 @@ export type Capability = {
 
 // ─── SBI Life Flowcharts ───
 
+export type CaseStudy = {
+  problem: string;
+  insight: string;
+  decision: string;
+  tradeoffs: string;
+  outcome: string;
+};
+
 export const sbiProcessFlows = {
   conversationalAI: {
     title: "Conversational AI — Policy Awareness, Servicing & Renewals",
-    subtitle: "The hardest part was never getting the AI to work. It was everything around it.",
+    subtitle: "The problem wasn't the AI. It was the trust architecture around it.",
+    caseStudy: {
+      problem: "Call-center renewal outreach was cost-inefficient for low-ticket policies, and rural policyholders across 10+ languages were essentially unreachable. The org had never shipped a customer-facing AI product.",
+      insight: "Everyone wanted to start with the model. I realized the bottleneck was compliance sign-off, data quality, and defining what happens when the AI gets it wrong. The failure modes mattered more than the happy path.",
+      decision: "Designed failure-first: built guardrails, human fallback logic, and IRDAI-compliant audit trails before writing a single conversation flow. Chose a hybrid LLM approach over a pure vendor lock-in.",
+      tradeoffs: "Sacrificed speed-to-first-demo to build a compliance-ready foundation. Delayed WhatsApp launch by 2 weeks to get audit trails right — which is what unlocked the sign-off for 4.5 Cr rollout.",
+      outcome: "Shipped to 4.5 Cr+ policyholders in 4 weeks (org record was 10). 25% AI accuracy improvement. 4% retention lift. 30% projected cost savings on renewal outreach.",
+    } as CaseStudy,
     steps: [
       { label: "Problem Discovery", detail: "CRM data analysis, complaint mining, cost-per-call audit across languages" },
       { label: "Pilot Design", detail: "Control cohorts, multilingual scope, success metrics definition" },
@@ -161,7 +178,14 @@ export const sbiProcessFlows = {
   },
   distributorDashboard: {
     title: "Mobile-First Distributor Performance Dashboards",
-    subtitle: "From 5K to 50K daily active users by solving for discoverability and data trust.",
+    subtitle: "You can't build adoption on data nobody trusts.",
+    caseStudy: {
+      problem: "400K+ distributors across retail, alliance, and branch channels had no self-serve performance tracking. Existing MIS had 5% error rates. Multiple data owners, no single source of truth.",
+      insight: "The engagement problem wasn't UX — it was data trust. Distributors ignored the dashboard because the numbers didn't match what they saw in the field. Fixing the data layer was the prerequisite to any growth strategy.",
+      decision: "Delayed visible feature work to rebuild the data governance layer. Unified MIS across 3 channels. Then invested in adoption — home screen repositioning, gamification, contest tracking.",
+      tradeoffs: "Leadership wanted new features fast. I argued that shipping unreliable dashboards would destroy trust permanently. Spent 6 weeks on invisible infrastructure before any user-facing changes.",
+      outcome: "10× DAU growth (5K → 50K) in 6 months. Data error rate from 5% to <1%. 40+ sales initiatives now powered by the platform.",
+    } as CaseStudy,
     steps: [
       { label: "Field Validation", detail: "Agent & manager interviews, pain point mapping across channels" },
       { label: "Solution Design", detail: "Plug-and-play framework, mobile-first architecture" },
@@ -183,7 +207,14 @@ export const sbiProcessFlows = {
   },
   loanAgainstPolicy: {
     title: "Policy Loan Journey — UX & Product-Led Growth",
-    subtitle: "Redesigning a ₹450 Cr book with 2–3× growth opportunity by benchmarking against lending apps.",
+    subtitle: "A ₹450 Cr book sitting under-monetized because the UX treated it like a back-office workflow.",
+    caseStudy: {
+      problem: "Policy loans at SBI Life were a ₹450 Cr book with 2–3× growth potential, but the UX was built for ops teams, not borrowers. Drop-off rates were high and users had no visibility into loan status.",
+      insight: "Borrowers compared the experience to KreditBee and Navi — not other insurers. The competition for attention was fintech, not legacy. The journey needed to feel like a lending app, not an insurance portal.",
+      decision: "Benchmarked against 5 lending apps, redesigned the end-to-end flow with loan tracking, statements, and top-up features. Built interactive prototypes to win cross-functional buy-in from ops, risk, and tech.",
+      tradeoffs: "Risk team wanted more friction (verification steps). I pushed for progressive disclosure — verify upfront, then get out of the way. Compromised with smart defaults + optional manual review.",
+      outcome: "₹450 Cr loan book repositioned for 2–3× growth. Cross-functional alignment achieved across ops, risk, tech, and leadership.",
+    } as CaseStudy,
     steps: [
       { label: "Benchmarking", detail: "Analyzed lending apps (KreditBee, Navi, etc.) for UX patterns" },
       { label: "User Research", detail: "Interviewed borrowers on pain points, drop-offs, trust signals" },
@@ -202,7 +233,7 @@ export const sbiProcessFlows = {
   },
   yonoPrototypes: {
     title: "YONO Distributor Life — Rapid Prototyping",
-    subtitle: "Vibe-coded prototypes for stakeholder demos and validation — outside production environment.",
+    subtitle: "When the org doesn't have a prototyping culture, you build it yourself.",
     steps: [
       { label: "Requirement Gathering", detail: "Distributor needs from field, contest tracking gaps" },
       { label: "Rapid Prototyping", detail: "Built functional prototypes using v0, Lovable, Copilot" },
@@ -225,7 +256,14 @@ export const sbiProcessFlows = {
 export const cloudcraftzFlow = {
   discovery: {
     title: "Enterprise LLM Product Discovery",
-    subtitle: "Finding the right problem before building the solution.",
+    subtitle: "The hardest product decision isn't what to build — it's what to kill.",
+    caseStudy: {
+      problem: "Early-stage AI startup with no market focus. Founders wanted to go after everything — legal, healthcare, HR, sales, logistics. 10 industries, zero prioritization.",
+      insight: "Most verticals had interesting problems but terrible unit economics for an early-stage LLM product. The market that looks biggest on paper is rarely the one where an early team can win.",
+      decision: "Built a Lean Canvas scoring framework across viability, feasibility, and desirability. Interviewed 40+ domain experts. Made kill/go calls on all 10 verticals. Prioritized talent acquisition and B2B sales intelligence — highest signal, most defensible data moats.",
+      tradeoffs: "Killing 8 verticals meant walking away from some genuinely interesting problems (legal AI, healthcare documentation). Prioritized 'can we win here as a 10-person team' over 'is this a big market.'",
+      outcome: "2 verticals prioritized with clear specs. Engineering focused instead of scattered. Talent acquisition vertical became the lead product.",
+    } as CaseStudy,
     steps: [
       { label: "Expert Interviews", detail: "40+ domain experts across 10 industries" },
       { label: "Lean Canvas Eval", detail: "Evaluated each vertical on viability, feasibility, desirability" },
@@ -243,7 +281,14 @@ export const cloudcraftzFlow = {
   },
   aiHiringPlatform: {
     title: "0→1 AI Hiring Platform",
-    subtitle: "From existing rule-based NLP to LLM-driven contextual resume evaluation.",
+    subtitle: "The industry was doing keyword matching and calling it AI. We built for contextual fit.",
+    caseStudy: {
+      problem: "HR tech relied on keyword matching — 'Python developer with 5 years experience' returned resumes that mentioned Python once in a side project. No contextual understanding of fit.",
+      insight: "The highest-value entry point wasn't the full hiring pipeline — it was resume validation. If the first filter is bad, everything downstream is garbage. Fix the top of the funnel first.",
+      decision: "Scoped MVP to resume validation only — the highest-signal, lowest-risk entry point. Designed pricing model, GTM strategy, and wrote the spec that engineering shipped directly from.",
+      tradeoffs: "Resisted pressure to build interview scheduling, candidate management, and the 'full platform.' Kept V1 brutally scoped to one thing that works.",
+      outcome: "0→1 MVP shipped directly from product specs. Engineering built without ambiguity because the spec was that tight.",
+    } as CaseStudy,
     steps: [
       { label: "Problem Framing", detail: "Existing HR tech relied on keyword matching — missing contextual fit" },
       { label: "Spec & Journeys", detail: "Product spec, user journeys, wireframes, information architecture" },
@@ -268,7 +313,14 @@ export const cloudcraftzFlow = {
 export const accentureFlow = {
   vulnerabilityTriage: {
     title: "Vulnerability Backlog Turnaround",
-    subtitle: "Inherited a 6,000+ vulnerability backlog with releases blocked for 4–5 years.",
+    subtitle: "6,000 vulnerabilities. Releases blocked for years. No framework. I built one.",
+    caseStudy: {
+      problem: "Fortune 500 energy client had accumulated 6,000+ vulnerabilities across their stack. Releases had been blocked for 4–5 years. No triage framework, no prioritization — just a growing list and growing frustration.",
+      insight: "Not all vulnerabilities are equal, but the existing process treated them that way. A critical exploit on a production-facing service was in the same queue as a low-severity library warning on an internal tool.",
+      decision: "Built a risk-based triage framework that scored by severity, exploitability, and business impact. Cleared critical blockers first to restore the release pipeline, then systematized the rest.",
+      tradeoffs: "Accepting risk on low-severity items to unblock releases. This required explicit sign-off from VP+ leadership — I presented the framework in governance forums and owned the recommendation.",
+      outcome: "Release cycle improved from monthly to weekly. Active backlog reduced from 250+ to <20. Framework became the account standard. Recognized with Best People Award (top 4 / 100+).",
+    } as CaseStudy,
     steps: [
       { label: "Backlog Audit", detail: "Assessed 6,000+ vulnerabilities across severity, exploitability, and business impact" },
       { label: "Risk Framework", detail: "Built risk-based triage — not all vulnerabilities are equal" },

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, ArrowRight, BarChart3 } from "lucide-react";
+import { MapPin, ArrowRight, BarChart3, AlertCircle, Lightbulb, GitBranch, Scale, Target } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { experiences, cloudcraftzFlow } from "@/data/resume";
-import type { Capability } from "@/data/resume";
+import type { Capability, CaseStudy } from "@/data/resume";
 
 const capabilityColors: Record<string, { bg: string; border: string; text: string }> = {
   blue: { bg: "bg-blue-500/10", border: "border-blue-500/30", text: "text-blue-300" },
@@ -34,9 +34,39 @@ function CapabilityChip({ cap }: { cap: Capability }) {
   );
 }
 
+function CaseStudyCard({ cs }: { cs: CaseStudy }) {
+  const rows = [
+    { icon: AlertCircle, label: "Problem", text: cs.problem, color: "text-red-400" },
+    { icon: Lightbulb, label: "Insight", text: cs.insight, color: "text-amber-400" },
+    { icon: GitBranch, label: "Decision", text: cs.decision, color: "text-blue-400" },
+    { icon: Scale, label: "Tradeoffs", text: cs.tradeoffs, color: "text-purple-400" },
+    { icon: Target, label: "Outcome", text: cs.outcome, color: "text-emerald-400" },
+  ];
+
+  return (
+    <div className="rounded-xl border border-slate-800/80 bg-slate-900/30 p-5 mb-6">
+      <div className="space-y-3">
+        {rows.map((row) => {
+          const Icon = row.icon;
+          return (
+            <div key={row.label} className="flex items-start gap-3">
+              <div className="flex items-center gap-1.5 w-24 flex-shrink-0 pt-0.5">
+                <Icon className={`w-3.5 h-3.5 ${row.color}`} />
+                <span className={`text-xs font-semibold uppercase tracking-wider ${row.color}`}>{row.label}</span>
+              </div>
+              <p className="text-sm text-slate-400 leading-relaxed">{row.text}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 type FlowData = {
   title: string;
   subtitle: string;
+  caseStudy?: CaseStudy;
   steps: { label: string; detail: string }[];
   capabilities: Capability[];
   metrics: { value: string; label: string }[];
@@ -49,8 +79,11 @@ function ProcessFlow({ flow }: { flow: FlowData }) {
         {flow.subtitle}
       </p>
 
+      {flow.caseStudy && <CaseStudyCard cs={flow.caseStudy} />}
+
       {/* Flowchart */}
       <div className="relative">
+        <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Execution Flow</h4>
         <div className="flex flex-wrap gap-2 items-center">
           {flow.steps.map((step, i) => (
             <div key={i} className="flex items-center gap-2">
