@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Brain, ArrowLeft, CheckCircle, AlertTriangle, Shield, Zap, Bot, Layers } from "lucide-react";
+import { Brain, ArrowLeft, CheckCircle, AlertTriangle, Shield, Zap, Layers, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ChatWidget from "@/components/chat/ChatWidget";
 
@@ -32,7 +32,7 @@ const aiAutonomy = {
 
 const deployChecklist = {
   title: "My Checklist Before Deploying Any AI-Powered Workflow",
-  subtitle: "A framework I follow to ensure every conversational AI use case earns its place in production",
+  subtitle: "A framework to ensure every conversational AI use case earns its place in production",
   items: [
     { question: "Is it high-volume and recurring?", detail: "If the workflow doesn't handle significant daily volume, the automation investment won't pay back. AI should absorb load, not add overhead." },
     { question: "Does it follow a definable sequence?", detail: "Conversational flows need a backbone. If the workflow can't be mapped into steps — even loosely — the bot will break in production." },
@@ -46,6 +46,11 @@ const deployChecklist = {
 
 export default function PMMindsetPage() {
   const [chatOpen, setChatOpen] = useState(false);
+  const [expandedArticle, setExpandedArticle] = useState<number | null>(null);
+
+  const toggleArticle = (index: number) => {
+    setExpandedArticle((prev) => (prev === index ? null : index));
+  };
 
   return (
     <div className="relative bg-slate-950 min-h-screen">
@@ -80,93 +85,186 @@ export default function PMMindsetPage() {
             </p>
           </motion.div>
 
-          {/* Section 1: Building Conversational AI */}
-          <motion.section
+          {/* Article 1: Building Conversational AI */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-20"
+            className="mb-6"
           >
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">{buildingConvAI.title}</h2>
-            <p className="text-sm italic text-blue-400 mb-8">{buildingConvAI.subtitle}</p>
+            <button
+              onClick={() => toggleArticle(0)}
+              className="w-full text-left rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-blue-500/30 transition-all duration-300 cursor-pointer"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2">{buildingConvAI.title}</h2>
+                  <p className="text-sm text-slate-400 leading-relaxed">{buildingConvAI.subtitle}</p>
+                </div>
+                <div className="flex-shrink-0 mt-1">
+                  {expandedArticle === 0 ? (
+                    <ChevronUp className="w-5 h-5 text-slate-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-slate-400" />
+                  )}
+                </div>
+              </div>
+            </button>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              {buildingConvAI.cards.map((card, i) => {
-                const Icon = card.icon;
-                return (
-                  <div key={i} className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-blue-500/30 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Icon className="w-5 h-5 text-blue-400" />
-                      <h3 className="text-lg font-semibold text-slate-200">{card.title}</h3>
+            <AnimatePresence initial={false}>
+              {expandedArticle === 0 && (
+                <motion.div
+                  key="content-0"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="pt-4 space-y-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {buildingConvAI.cards.map((card, i) => {
+                        const Icon = card.icon;
+                        return (
+                          <div key={i} className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-blue-500/30 transition-all duration-300">
+                            <div className="flex items-center gap-3 mb-3">
+                              <Icon className="w-5 h-5 text-blue-400" />
+                              <h3 className="text-lg font-semibold text-slate-200">{card.title}</h3>
+                            </div>
+                            <p className="text-sm text-slate-400 leading-relaxed">{card.description}</p>
+                          </div>
+                        );
+                      })}
                     </div>
-                    <p className="text-sm text-slate-400 leading-relaxed">{card.description}</p>
+
+                    <div className="rounded-lg bg-blue-500/10 border border-blue-500/20 px-5 py-4">
+                      <p className="text-sm text-blue-300 leading-relaxed">{buildingConvAI.callout}</p>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
-            <div className="rounded-lg bg-blue-500/10 border border-blue-500/20 px-5 py-4">
-              <p className="text-sm text-blue-300 leading-relaxed">{buildingConvAI.callout}</p>
-            </div>
-          </motion.section>
-
-          {/* Section 2: AI Autonomy */}
-          <motion.section
+          {/* Article 2: AI Autonomy */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-20"
+            className="mb-6"
           >
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">{aiAutonomy.title}</h2>
-            <p className="text-sm text-slate-400 mb-8">{aiAutonomy.subtitle}</p>
-
-            <div className="grid sm:grid-cols-3 gap-4 mb-6">
-              {aiAutonomy.levels.map((level) => (
-                <div key={level.level} className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 text-center">
-                  <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-lg font-bold text-blue-400">{level.level}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-slate-200 mb-1">{level.title}</h3>
-                  <p className="text-xs text-slate-500 mb-4">{level.subtitle}</p>
-                  <p className="text-sm text-slate-400 mb-4">{level.examples}</p>
-                  <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium border ${level.color}`}>
-                    {level.risk}
-                  </span>
+            <button
+              onClick={() => toggleArticle(1)}
+              className="w-full text-left rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-blue-500/30 transition-all duration-300 cursor-pointer"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2">{aiAutonomy.title}</h2>
+                  <p className="text-sm text-slate-400 leading-relaxed">{aiAutonomy.subtitle}</p>
                 </div>
-              ))}
-            </div>
+                <div className="flex-shrink-0 mt-1">
+                  {expandedArticle === 1 ? (
+                    <ChevronUp className="w-5 h-5 text-slate-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-slate-400" />
+                  )}
+                </div>
+              </div>
+            </button>
 
-            <div className="rounded-lg bg-slate-800/50 border border-slate-700/50 px-5 py-4">
-              <p className="text-sm text-slate-300 leading-relaxed">{aiAutonomy.callout}</p>
-            </div>
-          </motion.section>
+            <AnimatePresence initial={false}>
+              {expandedArticle === 1 && (
+                <motion.div
+                  key="content-1"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="pt-4 space-y-4">
+                    <div className="grid sm:grid-cols-3 gap-4">
+                      {aiAutonomy.levels.map((level) => (
+                        <div key={level.level} className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 text-center">
+                          <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-4">
+                            <span className="text-lg font-bold text-blue-400">{level.level}</span>
+                          </div>
+                          <h3 className="text-lg font-semibold text-slate-200 mb-1">{level.title}</h3>
+                          <p className="text-xs text-slate-500 mb-4">{level.subtitle}</p>
+                          <p className="text-sm text-slate-400 mb-4">{level.examples}</p>
+                          <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium border ${level.color}`}>
+                            {level.risk}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
 
-          {/* Section 3: Deploy Checklist */}
-          <motion.section
+                    <div className="rounded-lg bg-slate-800/50 border border-slate-700/50 px-5 py-4">
+                      <p className="text-sm text-slate-300 leading-relaxed">{aiAutonomy.callout}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Article 3: Deploy Checklist */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="mb-16"
           >
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">{deployChecklist.title}</h2>
-            <p className="text-sm italic text-blue-400 mb-8">{deployChecklist.subtitle}</p>
-
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              {deployChecklist.items.map((item, i) => (
-                <div key={i} className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-green-500/30 transition-all duration-300">
-                  <div className="flex items-start gap-3 mb-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    <h3 className="text-base font-semibold text-slate-200">{item.question}</h3>
-                  </div>
-                  <p className="text-sm text-slate-400 leading-relaxed ml-8">{item.detail}</p>
+            <button
+              onClick={() => toggleArticle(2)}
+              className="w-full text-left rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-blue-500/30 transition-all duration-300 cursor-pointer"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2">{deployChecklist.title}</h2>
+                  <p className="text-sm text-slate-400 leading-relaxed">{deployChecklist.subtitle}</p>
                 </div>
-              ))}
-            </div>
+                <div className="flex-shrink-0 mt-1">
+                  {expandedArticle === 2 ? (
+                    <ChevronUp className="w-5 h-5 text-slate-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-slate-400" />
+                  )}
+                </div>
+              </div>
+            </button>
 
-            <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 px-5 py-4">
-              <p className="text-sm text-amber-300 leading-relaxed">{deployChecklist.callout}</p>
-            </div>
-          </motion.section>
+            <AnimatePresence initial={false}>
+              {expandedArticle === 2 && (
+                <motion.div
+                  key="content-2"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="pt-4 space-y-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {deployChecklist.items.map((item, i) => (
+                        <div key={i} className="rounded-xl border border-slate-800/80 bg-slate-900/50 p-6 hover:border-green-500/30 transition-all duration-300">
+                          <div className="flex items-start gap-3 mb-3">
+                            <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <h3 className="text-base font-semibold text-slate-200">{item.question}</h3>
+                          </div>
+                          <p className="text-sm text-slate-400 leading-relaxed ml-8">{item.detail}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 px-5 py-4">
+                      <p className="text-sm text-amber-300 leading-relaxed">{deployChecklist.callout}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
           <div className="text-center">
             <p className="text-sm text-slate-500">

@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { MapPin, ArrowRight, Wrench, Target, BarChart3 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
-import { experiences, processFlows } from "@/data/resume";
+import { experiences, sbiProcessFlows } from "@/data/resume";
 
-function ProcessFlow({ flow }: { flow: typeof processFlows.conversationalAI }) {
+type FlowKey = keyof typeof sbiProcessFlows;
+
+function ProcessFlow({ flow }: { flow: typeof sbiProcessFlows[FlowKey] }) {
   return (
     <div className="space-y-8">
       {/* Subtitle / tagline */}
@@ -90,12 +92,16 @@ function ProcessFlow({ flow }: { flow: typeof processFlows.conversationalAI }) {
 
 export default function SBILifeSection() {
   const exp = experiences.find((e) => e.id === "sbi-life")!;
-  const [activeProject, setActiveProject] = useState<"conversationalAI" | "distributorDashboard">("conversationalAI");
+  const [activeProject, setActiveProject] = useState<FlowKey>("conversationalAI");
 
-  const projects = [
-    { key: "conversationalAI" as const, label: "Conversational AI", flow: processFlows.conversationalAI },
-    { key: "distributorDashboard" as const, label: "Distributor Dashboards", flow: processFlows.distributorDashboard },
+  const projects: { key: FlowKey; label: string }[] = [
+    { key: "conversationalAI", label: "Conversational AI" },
+    { key: "distributorDashboard", label: "Distributor Dashboards" },
+    { key: "loanAgainstPolicy", label: "Loan Against Policy" },
+    { key: "yonoPrototypes", label: "YONO Prototypes" },
   ];
+
+  const activeFlow = sbiProcessFlows[activeProject];
 
   return (
     <section id="sbi-life" className="relative py-24 px-4 sm:px-6 lg:px-8">
@@ -121,7 +127,7 @@ export default function SBILifeSection() {
 
         {/* Project tabs */}
         <ScrollReveal delay={0.2}>
-          <div className="flex gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-8">
             {projects.map((p) => (
               <button
                 key={p.key}
@@ -141,9 +147,9 @@ export default function SBILifeSection() {
         <ScrollReveal delay={0.3}>
           <div className="rounded-xl border border-slate-800/80 bg-slate-900/30 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-slate-200 mb-4">
-              {projects.find((p) => p.key === activeProject)!.flow.title}
+              {activeFlow.title}
             </h3>
-            <ProcessFlow flow={projects.find((p) => p.key === activeProject)!.flow} />
+            <ProcessFlow flow={activeFlow} />
           </div>
         </ScrollReveal>
       </div>
